@@ -4,22 +4,22 @@ import React from "react";
 const BrandsSection = () => {
   const logo = [
     {
-      img: "/images/TFC28663-150x150.png",
+      img: "/images/1logo.png",
     },
     {
-      img: "/images/KEILOR-PARK-150x150.jpg",
+      img: "/images/2logo.jpg",
     },
     {
-      img: "/images/PEGS-LOGO--150x150.png",
+      img: "/images/3logo.png",
     },
     {
-      img: "/images/TAYLORS-LAKES--150x150.jpeg",
+      img: "/images/4logo.jpeg",
     },
     {
-      img: "/images/australianphysiotherapy.jpg",
+      img: "/images/5logo.jpg",
     },
     {
-      img: "/images/Upfield-soccer-club-logo-150x150.png",
+      img: "/images/6logo.png",
     },
   ];
   return (
