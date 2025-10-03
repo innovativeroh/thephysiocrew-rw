@@ -52,7 +52,7 @@ const AboutUsSection = () => {
         <div className="w-full lg:w-1/2 flex items-center justify-center lg:justify-start py-12 lg:py-0">
           <div className="relative w-[90%] md:w-[80%] lg:w-[90%] xl:w-[80%] aspect-[5/4] lg:aspect-auto h-[450px] md:h-[550px] lg:h-[70%] xl:h-[80%] rounded-[2rem] overflow-hidden">
             <Image
-              src="/images/team.jpg"
+              src="/asset/team.jpg"
               alt="Physiotherapists consulting with a patient in a modern clinic"
               layout="fill"
               objectFit="cover"
