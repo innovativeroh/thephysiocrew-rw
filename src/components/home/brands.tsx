@@ -4,22 +4,22 @@ import React from "react";
 const BrandsSection = () => {
   const logo = [
     {
-      img: "/images/1logo.png",
+      img: "/asset/1logo.png",
     },
     {
-      img: "/images/2logo.jpg",
+      img: "/asset/2logo.jpg",
     },
     {
-      img: "/images/3logo.png",
+      img: "/asset/3logo.png",
     },
     {
-      img: "/images/4logo.jpeg",
+      img: "/asset/4logo.jpeg",
     },
     {
-      img: "/images/5logo.jpg",
+      img: "/asset/5logo.jpg",
     },
     {
-      img: "/images/6logo.png",
+      img: "/asset/6logo.png",
     },
   ];
   return (
