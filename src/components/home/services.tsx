@@ -13,7 +13,7 @@ const Services = () => {
             <h1 className="text-3xl md:text-4xl lg:text-5xl text-black alan-semibold max-w-[500px]">
               Quality Service You Can Get
             </h1>
-            <p className="text-sm max-w-[500px] text-gray-900 mont-medium">
+            <p className="text-lg max-w-[500px] text-gray-900 mont-medium">
               We provide a wide range of health services. Covering all of your
               healthcare needs.
             </p>

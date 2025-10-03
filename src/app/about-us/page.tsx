@@ -5,6 +5,8 @@ import React from "react";
 import Team from "../../../public/Images/team.jpg"; // Remember to replace this with an actual team photo
 import { StarIcon } from "lucide-react";
 import { motion } from "framer-motion";
+import CoveredSection from "@/components/home/covered";
+import TeamsSections from "@/components/home/team";
 
 const AboutUsSection = () => {
   // Stats relevant to The Physio Crew
@@ -72,7 +74,7 @@ const AboutUsSection = () => {
         </motion.div>
 
         <motion.div
-          className="bg-white py-16 sm:py-24"
+          className="bg-white pt-16 sm:pt-24"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
@@ -136,6 +138,8 @@ const AboutUsSection = () => {
             </div>
           </div>
         </motion.div>
+        <CoveredSection />
+        <TeamsSections />
       </main>
     </section>
   );

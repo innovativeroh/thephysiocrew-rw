@@ -1,6 +1,5 @@
 import React from 'react'
 import Hero from '@/components/home/hero'
-import TeamsSections from '../components/home/team'
 import TestimonialsSection from '@/components/home/Testimonials'
 import ServicesSection from '@/components/home/services'
 import BrandsSection from '@/components/home/brands'
@@ -9,6 +8,8 @@ import Footer from '@/components/core/footer'
 import WhyChooseUs from '@/components/home/whyChooseUs'
 import AboutUsSection from '@/components/home/about'
 import ReelsSection from '@/components/home/reels'
+import MoreThanSection from '@/components/home/MoreThan'
+import ValdSection from '@/components/home/ValdSection'
 
 const page = () => {
   return (
@@ -16,8 +17,9 @@ const page = () => {
       <Hero />
       <WhyChooseUs />
       <ServicesSection />
-      <TeamsSections />
-      <AboutUsSection />
+      <MoreThanSection />
+      <ValdSection />
+      {/* <AboutUsSection /> */}
       <TestimonialsSection />
       <BrandsSection />
       <ReelsSection />
