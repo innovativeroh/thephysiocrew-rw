@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
     return config;
   },
 
+  images: {
+    domains: ['techsolaceconnects.s3.ap-south-1.amazonaws.com']
+  },
+
   turbopack: {
     resolveAlias: {}
   }
