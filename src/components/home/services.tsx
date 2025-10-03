@@ -1,0 +1,71 @@
+import React from "react";
+import { Badge } from "../ui/badge";
+import arrowRightUp from "../../../public/icons/arrow-right-up-line.svg";
+import Image from "next/image";
+import { services } from "@/lib/data";
+
+const Services = () => {
+  return (
+    <section>
+      <main className="container mx-auto">
+        <div className="px-5 pt-48 w-full flex-center flex-col gap-16">
+          <div className="w-full flex flex-col md:flex-row items-start justify-between gap-4">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl text-black alan-semibold max-w-[500px]">
+              Quality Service You Can Get
+            </h1>
+            <p className="text-sm max-w-[500px] text-gray-900 mont-medium">
+              We provide a wide range of health services. Covering all of your
+              healthcare needs.
+            </p>
+          </div>
+          <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 place-items-center place-content-center">
+            {services.map((service, index) => (
+              <div
+                key={index}
+                className="group relative h-[500px] w-full max-w-[400px] rounded-3xl bg-neutral-200 overflow-hidden"
+              >
+                <img
+                  src={service.imageUrl}
+                  alt={service.title}
+                  className="absolute inset-0 w-full h-full object-cover scale-100 group-hover:scale-110 transition-transform duration-500 ease-in-out"
+                />
+                <div
+                  className="absolute inset-0 bg-black/10 group-hover:opacity-0 transition-opacity duration-500 ease-in-out"
+                />
+                <div
+                  className="absolute inset-0 mix-blend-multiply opacity-60 group-hover:opacity-0 transition-opacity duration-500 ease-in-out"
+                  style={{ backgroundColor: service.color }}
+                />
+
+                <div className="relative z-10 h-full w-full p-7 flex flex-col justify-between">
+                  <h1 className="text-2xl text-white alan-medium">
+                    {service.title}
+                  </h1>
+
+                  {/* --- CHANGES START HERE --- */}
+                  <div className="relative h-[120px] overflow-hidden">
+                    <p className="absolute top-0 text-sm mont-medium text-white transition-all duration-500 ease-in-out opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0">
+                      {service.description}
+                    </p>
+                    <div className="absolute bottom-0 bg-white rounded-full p-3 shadow-lg max-w-fit transition-all duration-500 ease-in-out opacity-100 translate-y-0 group-hover:opacity-0 group-hover:translate-y-8">
+                      <Image
+                        src={arrowRightUp}
+                        alt="Go to service details"
+                        width={30}
+                        height={30}
+                        className="h-7 w-auto"
+                      />
+                    </div>
+                  </div>
+                   {/* --- CHANGES END HERE --- */}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </main>
+    </section>
+  );
+};
+
+export default Services;
