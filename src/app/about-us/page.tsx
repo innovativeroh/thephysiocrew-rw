@@ -2,11 +2,12 @@
 
 import Image from "next/image";
 import React from "react";
-import Team from "../../../public/Images/team.jpg"; // Remember to replace this with an actual team photo
+import Team from "../../../public/Images/team.jpg";
 import { StarIcon } from "lucide-react";
 import { motion } from "framer-motion";
 import CoveredSection from "@/components/home/covered";
 import TeamsSections from "@/components/home/team";
+import Footer from "@/components/core/footer";
 
 const AboutUsSection = () => {
   // Stats relevant to The Physio Crew
@@ -29,22 +30,28 @@ const AboutUsSection = () => {
     },
   ];
 
+  // Reusable variant for items that fade in and slide up
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
   };
+  
+  // Reusable variant for containers that stagger their children's animations
+  const staggerContainer = {
+      hidden: { opacity: 0 },
+      visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
+  }
 
   return (
     <section>
       <main className="max-w-[1440px] mx-auto overflow-hidden">
+        {/* Top Section: Header & Team Image */}
         <motion.div
           className="px-5 pt-28 w-full flex-center flex-col gap-10"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={{
-            visible: { transition: { staggerChildren: 0.2 } },
-          }}
+          viewport={{ once: true, amount: 0.2 }}
+          variants={staggerContainer}
         >
           <motion.div
             className="w-full flex flex-col lg:flex-row gap-5 items-center lg:items-end justify-between"
@@ -68,19 +75,18 @@ const AboutUsSection = () => {
               alt="The Physio Crew Team"
               width={1920}
               height={1080}
-              className="w-full h-full object-cover object-center"
+              className="w-full h-full object-cover object-top"
             />
           </motion.div>
         </motion.div>
 
+        {/* Bottom Section: Mission & Stats */}
         <motion.div
           className="bg-white pt-16 sm:pt-24"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          variants={{
-            visible: { transition: { staggerChildren: 0.2 } },
-          }}
+          variants={staggerContainer}
         >
           <div className="mx-auto max-w-[1440px] px-6 lg:px-8">
             <motion.div
@@ -116,11 +122,15 @@ const AboutUsSection = () => {
                 </div>
               </div>
             </motion.div>
-            <div className="mt-16 sm:mt-20">
+
+            {/* Stats section with its own stagger container for the numbers */}
+            <motion.div className="mt-16 sm:mt-20" variants={fadeIn}>
               <dl className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
                 {statsData.map((stat, index) => (
                   <motion.div
                     key={stat.label}
+                    // This is a great way to handle it, no changes needed here.
+                    // The delay is based on the item's index, creating a nice cascade.
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -135,12 +145,13 @@ const AboutUsSection = () => {
                   </motion.div>
                 ))}
               </dl>
-            </div>
+            </motion.div>
           </div>
         </motion.div>
-        <CoveredSection />
-        <TeamsSections />
       </main>
+      <CoveredSection />
+      <TeamsSections />
+      <Footer />
     </section>
   );
 };

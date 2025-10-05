@@ -1,3 +1,5 @@
+"use client"; // Required for Framer Motion
+
 import {
   Activity,
   User,
@@ -9,6 +11,7 @@ import {
   Wind,
 } from "lucide-react";
 import React from "react";
+import { motion } from "framer-motion"; // Import motion
 
 const CoveredSection = () => {
   const cards = [
@@ -78,25 +81,71 @@ const CoveredSection = () => {
     },
   ];
 
+  // A reusable variant for containers that stagger their children's animations
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15, // Time delay between each child animating in
+      },
+    },
+  };
+
+  // A reusable variant for child items that fade in and slide up
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut" as const,
+      },
+    },
+  };
+
   return (
     <section className="pt-20">
       <main className="container mx-auto">
-        <div className="px-5 pt-10 pb-20 w-full flex flex-col items-center gap-16">
-          <div className="w-full flex flex-col items-center gap-5 max-w-4xl">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl alan-semibold text-gray-900 text-center leading-tight">
+        <div className="px-5 pt-10 w-full flex flex-col items-center gap-16">
+          {/* Animated Header */}
+          <motion.div
+            className="w-full flex flex-col items-center gap-5 max-w-4xl"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.5 }}
+          >
+            <motion.h1
+              variants={itemVariants}
+              className="text-3xl md:text-4xl lg:text-5xl alan-semibold text-gray-900 text-center leading-tight"
+            >
               What We Treat
-            </h1>
-            <p className="text-base md:text-lg text-gray-600 mont-medium text-center leading-relaxed">
+            </motion.h1>
+            <motion.p
+              variants={itemVariants}
+              className="text-base md:text-lg text-gray-600 mont-medium text-center leading-relaxed"
+            >
               We treat back & neck pain, sports/work injuries, sciatica,
               whiplash, post-op rehab, osteoarthritis, tendon issues,
               neurological conditions, pre/post-natal pain, balance/vertigo, and
               more. Personalised care to help you move better.
-            </p>
-          </div>
-          <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            </motion.p>
+          </motion.div>
+
+          {/* Animated Grid of Cards */}
+          <motion.div
+            className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }} // Start animation when 10% of the grid is visible
+          >
             {cards.map((treatment, index) => (
-              <div
+              <motion.div
                 key={index}
+                variants={itemVariants}
                 className="group p-6 w-full h-full flex flex-col items-start justify-center border border-gray-200 rounded-xl hover:shadow-lg hover:border-gray-300 transition-all duration-300 bg-white"
               >
                 <div
@@ -113,9 +162,9 @@ const CoveredSection = () => {
                 <p className="text-base text-gray-600 font-medium leading-relaxed flex-1">
                   {treatment.description}
                 </p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </main>
     </section>

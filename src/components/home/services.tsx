@@ -1,27 +1,79 @@
+"use client"; // Required for animations
+
 import React from "react";
-import { Badge } from "../ui/badge";
 import arrowRightUp from "../../../public/icons/arrow-right-up-line.svg";
 import Image from "next/image";
 import { services } from "@/lib/data";
+import { motion } from "framer-motion"; // Import motion
 
 const Services = () => {
+
+  // Variants for the grid container to stagger its children
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15, // Delay between each card animation
+      },
+    },
+  };
+
+  // Variants for each service card
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut" as const,
+      },
+    },
+  };
+
   return (
     <section>
       <main className="container mx-auto">
-        <div className="px-5 pt-48 w-full flex-center flex-col gap-16">
+        <div className="px-5 pt-32 md:pt-48 w-full flex-center flex-col gap-16">
           <div className="w-full flex flex-col md:flex-row items-start justify-between gap-4">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl text-black alan-semibold max-w-[500px]">
+            {/* Animate heading to slide in from the left */}
+            <motion.h1
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.6, ease: "easeOut" as const }}
+              className="text-3xl md:text-4xl lg:text-5xl text-black alan-semibold max-w-[500px]"
+            >
               Quality Service You Can Get
-            </h1>
-            <p className="text-lg max-w-[500px] text-gray-900 mont-medium">
+            </motion.h1>
+
+            {/* Animate paragraph to slide in from the right */}
+            <motion.p
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.6, ease: "easeOut" as const, delay: 0.1 }}
+              className="text-lg max-w-[500px] text-gray-900 mont-medium"
+            >
               We provide a wide range of health services. Covering all of your
               healthcare needs.
-            </p>
+            </motion.p>
           </div>
-          <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 place-items-center place-content-center">
+
+          {/* Staggered animation container for the services grid */}
+          <motion.div
+            className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 place-items-center place-content-center"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+          >
             {services.map((service, index) => (
-              <div
+              // Each card animates based on the cardVariants
+              <motion.div
                 key={index}
+                variants={cardVariants}
                 className="group relative h-[500px] w-full max-w-[400px] rounded-3xl bg-neutral-200 overflow-hidden"
               >
                 <img
@@ -42,7 +94,6 @@ const Services = () => {
                     {service.title}
                   </h1>
 
-                  {/* --- CHANGES START HERE --- */}
                   <div className="relative h-[120px] overflow-hidden">
                     <p className="absolute top-0 text-sm mont-medium text-white transition-all duration-500 ease-in-out opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0">
                       {service.description}
@@ -57,11 +108,10 @@ const Services = () => {
                       />
                     </div>
                   </div>
-                   {/* --- CHANGES END HERE --- */}
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </main>
     </section>

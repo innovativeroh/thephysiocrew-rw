@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { AnimatedTooltip } from "../ui/animated-tooltip";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+// Import motion and AnimatePresence from framer-motion
+import { motion, AnimatePresence } from "framer-motion";
 
 const Hero = () => {
   const images = [
@@ -45,7 +47,7 @@ const Hero = () => {
       name: "Tyler Durden",
       designation: "Soap Developer",
       image:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80",
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%D%3D&auto=format&fit=crop&w=3540&q=80",
     },
     {
       id: 6,
@@ -66,52 +68,123 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, [images.length]);
 
+  // Animation variants for the container to orchestrate animations of children
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2, // Stagger the animation of children
+      },
+    },
+  };
+
+  // Animation variants for child elements to fade in from below
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        // Add "as const" here
+        ease: "easeOut" as const,
+      },
+    },
+  };
+  
+  // Animation variants for the image slider
+  const sliderVariants = {
+    initial: { opacity: 0, scale: 1.05 },
+    animate: { 
+      opacity: 1, 
+      scale: 1, 
+      transition: { 
+        duration: 1, 
+        ease: [0.43, 0.13, 0.23, 0.96] as const 
+      } 
+    },
+    exit: { 
+      opacity: 0, 
+      scale: 0.95, 
+      transition: { 
+        duration: 1, 
+        ease: [0.43, 0.13, 0.23, 0.96] as const 
+      } 
+    },
+  };
+
+
   return (
     <div className="h-[850px] relative w-full flex items-center justify-start overflow-hidden">
       <div className="w-full h-full absolute top-0 left-0 HeroBackground z-[-2]"></div>
-      {/* Start of Hero Slider */}
+      
+      {/* Start of Hero Slider with Framer Motion */}
       <div className="hidden lg:block absolute top-0 right-0 w-[750px] h-[850px] z-[-2]">
-        {images.map((img, index) => (
-          <div
-            key={index}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
-              index === currentIndex ? "opacity-100" : "opacity-0"
-            }`}
+        <AnimatePresence initial={false} mode="wait">
+          <motion.div
+            key={currentIndex}
+            variants={sliderVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            className="absolute inset-0"
           >
             <img
-              src={img}
-              alt={`Slide ${index}`}
+              src={images[currentIndex]}
+              alt={`Slide ${currentIndex}`}
               className="w-full h-full rounded-bl-[500px] object-cover"
             />
-          </div>
-        ))}
+          </motion.div>
+        </AnimatePresence>
       </div>
-      <div className="container mx-auto px-5">
-        <div className="flex flex-row mb-8">
+
+      {/* Main content container with staggered animations */}
+      <motion.div
+        className="container mx-auto px-5"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.div className="flex flex-row mb-8" variants={itemVariants}>
           <AnimatedTooltip items={people} />
-        </div>
-        <h1 className="text-3xl md:text-4xl lg:text-6xl text-white alan-semibold max-w-[700px]">
+        </motion.div>
+
+        <motion.h1
+          variants={itemVariants}
+          className="text-3xl md:text-4xl lg:text-6xl text-white alan-semibold max-w-[700px]"
+        >
           Empowering you to live
-          <br /> <span className="text-[#ee9325] alan-bold">
-            pain-free
-          </span>{" "}
+          <br /> <span className="text-[#ee9325] alan-bold">pain-free</span>{" "}
           with expert hands-on care.
-        </h1>
-        <p className="text-xl max-w-[500px] text-white mont-medium mt-3">
-          We provide personalised treatment & recovery
-          plans to achieve your health goals
-        </p>
-        <div className="inline-block mt-5">
-          <Link
-            href={"#"}
-            className="flex alan-semibold text-lg flex-wrap mt-5 gap-4 text-blue-950 bg-white py-3 px-6 rounded-2xl"
+        </motion.h1>
+
+        <motion.p
+          variants={itemVariants}
+          className="text-xl max-w-[500px] text-white mont-medium mt-3"
+        >
+          We provide personalised treatment & recovery plans to achieve your
+          health goals
+        </motion.p>
+
+        <motion.div
+          variants={itemVariants}
+          className="inline-block mt-5"
+        >
+          {/* Added hover and tap animations for the button */}
+          <motion.div
+            whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+            whileTap={{ scale: 0.95 }}
           >
-            Book Now <ArrowRight />
-          </Link>
-        </div>
-      </div>
-      {/* <Image src="/element.png" alt="shape" width={800} height={800} className="absolute top-[280px] right-[550px] rotate-25 w-[500px]" /> */}
-      {/* End of Hero Slider */}
+            <Link
+              href={"#"}
+              className="flex alan-semibold text-lg flex-wrap mt-5 gap-4 text-blue-950 bg-white py-3 px-6 rounded-2xl"
+            >
+              Book Now <ArrowRight />
+            </Link>
+          </motion.div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 };

@@ -32,13 +32,15 @@ const Header = () => {
         {/* Left Side - Logo + Nav */}
         <div className="flex items-center gap-4 lg:gap-16 flex-1">
           <div className="flex-shrink-0">
-            <Image
-              src="/logo.png"
-              alt="logo"
-              width={200}
-              height={200}
-              className="w-auto h-12"
-            />
+            <Link href={"/"}>
+              <Image
+                src="/logo.png"
+                alt="logo"
+                width={250}
+                height={250}
+                className="w-auto h-16"
+              />
+            </Link>
           </div>
 
           <nav className="hidden md:flex gap-6 items-center flex-1 justify-center lg:justify-start">
@@ -55,7 +57,7 @@ const Header = () => {
               About Us
             </Link>
             <Link
-              href="/"
+              href="/blogs"
               className="mont-regular text-sm md:text-base hover:underline"
             >
               News & Research
@@ -158,7 +160,7 @@ const Header = () => {
                 About Us
               </Link>
               <Link
-                href="/"
+                href="/blogs"
                 className="mont-regular text-base hover:underline w-full text-center py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
