@@ -23,6 +23,12 @@ export const blog = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "category",
+      title: "Category",
+      type: "string",
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: "author",
       title: "Author",
       type: "string",
@@ -37,12 +43,14 @@ export const blog = defineType({
       title: "Excerpt",
       type: "text",
       rows: 3,
+      validation: (Rule) => Rule.required().max(200),
     }),
     defineField({
       name: "mainImage",
       title: "Main Image",
       type: "image",
       options: { hotspot: true },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "content",

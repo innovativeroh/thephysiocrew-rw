@@ -18,13 +18,23 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"; // shadcn/ui import
+import { usePathname } from "next/navigation";
 
 const Header = () => {
+  const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
+  const hiddenPaths = [/^\/Studio(\/.*)?$/] as RegExp[];
+
+  const isHiddenPath = hiddenPaths.some((pattern) => pattern.test(pathname));
+  if (isHiddenPath) {
+    console.log("Hidden path detected, returning null...");
+    return null;
+  }
 
   return (
     <div className="flex fixed z-[50] w-full bg-[#fffcf8]">

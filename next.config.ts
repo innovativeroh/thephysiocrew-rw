@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
   },
 
   images: {
-    domains: ['techsolaceconnects.s3.ap-south-1.amazonaws.com'],
+    domains: ['techsolaceconnects.s3.ap-south-1.amazonaws.com', 'cdn.sanity.io'],
     unoptimized: true
   },
 

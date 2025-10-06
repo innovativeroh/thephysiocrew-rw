@@ -3,7 +3,7 @@ import { defineField, defineType } from "sanity";
 
 export const team = defineType({
   name: "team",
-  title: "Team",
+  title: "Team Member",
   type: "document",
   fields: [
     defineField({
@@ -13,8 +13,22 @@ export const team = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "designation",
-      title: "Designation",
+      name: "image",
+      title: "Image",
+      type: "image",
+      options: { hotspot: true },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "role",
+      title: "Role",
+      description: "e.g., Director & Principal (Optional)",
+      type: "string",
+    }),
+    defineField({
+      name: "education",
+      title: "Education",
+      description: "e.g., Physiotherapist | B.Physio (La Trobe) | APAM",
       type: "string",
       validation: (Rule) => Rule.required(),
     }),
@@ -22,13 +36,15 @@ export const team = defineType({
       name: "description",
       title: "Description",
       type: "text",
-      rows: 3,
-    }),
-    defineField({
-      name: "image",
-      title: "Image",
-      type: "image",
-      options: { hotspot: true },
+      rows: 5,
+      validation: (Rule) => Rule.required(),
     }),
   ],
+  preview: {
+    select: {
+      title: "name",
+      subtitle: "role",
+      media: "image",
+    },
+  },
 });

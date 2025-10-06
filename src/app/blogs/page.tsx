@@ -2,56 +2,103 @@
 
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
-import heroImage from "../../../public/Images/medical.jpg";
+import heroImage from "../../../public/Images/medical.jpg"; // Ensure this path is correct
 import { ArrowUpIcon, SearchIcon } from "lucide-react";
 import Link from "next/link";
-import { motion } from "framer-motion"; // Import motion
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { groq, PortableTextBlock } from "next-sanity";
+import { client } from "../../../sanity/lib/client";
 
-interface BlogPost {
-  id: number;
-  category: string;
+// Interfaces remain the same
+export interface BlogPreview {
+  _id: string;
   title: string;
+  slug: string;
+  category: string | null;
+  authorName: string | null;
+  mainImage: string | null;
+  publishedAt: string;
   excerpt: string;
-  author: string;
-  date: string;
-  imageUrl: string;
 }
 
-const BlogsSection = () => {
-  const blogPosts: BlogPost[] = [
-    {
-      id: 1,
-      category: "Sports Injuries",
-      title: "Recover Safely & Return Stronger: A Guide for Athletes",
-      excerpt:
-        "Our Physiotherapists use cutting-edge VALD technology to deliver clear recovery goals and tailored rehab programs for athletes of all levels.",
-      author: "Marcus Just",
-      date: "Oct 02, 2025",
-      imageUrl: "/Images/4.jpg", // Placeholder image
-    },
-    {
-      id: 2,
-      category: "Post-Op Rehab",
-      title: "The Road to Recovery: A Deep Dive into Post-Operative Rehab",
-      excerpt:
-        "With a special interest in post-op rehab, we focus on knee and shoulder injuries, building trust and keeping clients moving forward.",
-      author: "Lauren Le'Toille",
-      date: "Sep 28, 2025",
-      imageUrl: "/Images/4.jpg", // Placeholder image
-    },
-    {
-      id: 3,
-      category: "Wellness",
-      title: "Beyond the Pain: How Remedial Massage Can Restore Your Body",
-      excerpt:
-        "Anthony, our skilled therapist, eases muscle and joint pain with techniques like deep tissue massage, cupping, and scraping.",
-      author: "Anthony Xenos",
-      date: "Sep 15, 2025",
-      imageUrl: "/Images/4.jpg", // Placeholder image
-    },
-  ];
+export interface AuthorDetails {
+  name: string;
+  authorImage: string | null;
+  bio: PortableTextBlock[];
+}
 
-  // This is a great reusable variant for staggering child animations.
+export interface BlogPost {
+  _id: string;
+  title: string;
+  slug: string;
+  category: string | null;
+  authorName: string | null; // Changed from author to authorName to match query
+  mainImage: string | null;
+  publishedAt: string;
+  excerpt: string;
+  content: PortableTextBlock[];
+}
+
+/**
+ * Interface for the slug object.
+ * Corresponds to the query for "All Slugs".
+ */
+export interface Slug {
+  slug: string;
+}
+
+// A simple utility to format dates for better readability
+const formatDate = (dateString: string) => {
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  };
+  return new Date(dateString).toLocaleDateString("en-US", options);
+};
+
+const BlogsSection = () => {
+  const [blogs, setBlogs] = useState<BlogPost[]>([]);
+  const [error, setError] = useState<any | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  // Renamed query for clarity
+  const blogsQuery = groq`*[_type == "blog"] | order(publishedAt desc) {
+      _id,
+      title,
+      "slug": slug.current,
+      "category": category->title,
+      "authorName": author->name, // This is the correct field name
+      "mainImage": mainImage.asset->url,
+      publishedAt,
+      excerpt
+    }`;
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await client.fetch(blogsQuery, undefined, {
+          cache: "no-cache",
+          next: {
+            tags: ["blog", "medical", "physiotherapy"],
+          },
+        });
+        setBlogs(response);
+      } catch (err) {
+        setError(err);
+        console.error("Failed to fetch blogs:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchBlogs();
+  }, []); // Added blogsQuery to dependency array for correctness
+
+  // Removed unused 'blogPosts' array
+
   const staggerContainer = {
     hidden: { opacity: 0 },
     visible: {
@@ -62,7 +109,6 @@ const BlogsSection = () => {
     },
   };
 
-  // This reusable item variant is perfect for the fade-in-and-slide-up effect.
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -81,14 +127,14 @@ const BlogsSection = () => {
       <div className="text-white relative">
         <Image
           src={heroImage}
-          alt=""
+          alt="Medical professional assisting a patient"
           width={1920}
           height={1080}
+          priority // Add priority for LCP images
           className="absolute top-0 left-0 h-full w-full object-cover z-[-2]"
         />
-        <div className="h-full w-full absolute top-0 left-0 bg-black/30 z-[-1]"></div>
+        <div className="h-full w-full absolute top-0 left-0 bg-black/40 z-[-1]"></div>
         <div className="container mx-auto px-6 py-24 md:py-32 lg:py-40">
-          {/* Your use of `animate="visible"` here is perfect for an on-load animation. */}
           <motion.div
             className="max-w-4xl mx-auto text-center space-y-8"
             variants={staggerContainer}
@@ -103,22 +149,19 @@ const BlogsSection = () => {
                 NEWS & RESEARCH
               </span>
             </motion.div>
-
             <motion.h1
               variants={itemVariants}
-              className="text-3xl md:text-4xl lg:text-6xl text-center alan-semibold"
+              className="text-3xl md:text-4xl lg:text-6xl text-center font-semibold" // Assuming 'alan-semibold' was a custom font name
             >
               Health, Movement & Recovery
             </motion.h1>
-
             <motion.p
               variants={itemVariants}
-              className="text-sm max-w-[600px] mx-auto text-gray-200 mont-medium text-center"
+              className="text-sm max-w-[600px] mx-auto text-gray-200 font-medium text-center" // Assuming 'mont-medium'
             >
               Expert knowledge and genuine care to help you relieve pain,
               restore strength, and achieve your health goals.
             </motion.p>
-
             <motion.div
               variants={itemVariants}
               className="max-w-xl mx-auto pt-4"
@@ -140,7 +183,6 @@ const BlogsSection = () => {
 
       {/* Blog Grid */}
       <div className="container mx-auto px-6 py-16 md:py-24">
-        {/* Using `whileInView` for the blog grid is the correct approach for scroll-triggered animations. */}
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10"
           variants={staggerContainer}
@@ -148,54 +190,47 @@ const BlogsSection = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          {blogPosts.map((blog) => (
-            <motion.div key={blog.id} variants={itemVariants}>
-              <Link href={`/blogs/${blog.id}`} legacyBehavior>
-                <a className="group cursor-pointer block">
-                  <article>
-                    {/* Image Container */}
-                    <div className="relative aspect-[4/3] mb-6 overflow-hidden rounded-2xl bg-muted">
-                      <Image
-                        src={blog.imageUrl || "/placeholder.svg"}
-                        alt={blog.title}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
+          {blogs.map((blog) => (
+              <Link href={`/blogs/${blog.slug}`} className="group block" key={blog._id}>
+                {/* Image Container */}
+                <div className="relative aspect-[4/3] mb-6 overflow-hidden rounded-2xl bg-muted">
+                  <Image
+                    src={blog.mainImage || "/placeholder.svg"}
+                    alt={blog.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                {/* Content */}
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between text-sm">
+                    <Badge
+                      variant="secondary"
+                      className="bg-blue-500/10 text-blue-500 font-medium"
+                    >
+                      {blog.category}
+                    </Badge>
+                    <time className="text-gray-400 font-medium">
+                      {/* FIX: Format the date for readability */}
+                      {formatDate(blog.publishedAt)}
+                    </time>
+                  </div>
+                  <h2 className="text-xl md:text-2xl font-semibold text-balance">
+                    {blog.title}
+                  </h2>
+                  <p className="font-medium text-pretty">{blog.excerpt}</p>
+                  <div className="flex items-center justify-between pt-2">
+                    <span className="text-sm font-medium text-black">
+                      {/* FIX: Use 'authorName' which is what the query returns */}
+                      {blog.authorName}
+                    </span>
+                    <div className="flex items-center gap-2 font-semibold text-sm text-blue-600">
+                      <span>Read more</span>
+                      <ArrowUpIcon className="rotate-45" size={16} />
                     </div>
-                    {/* Content */}
-                    <div className="space-y-4">
-                      {/* ... content ... */}
-                      <div className="flex items-center justify-between text-sm">
-                        <Badge
-                          variant="secondary"
-                          className="bg-blue-500/10 text-blue-500 alan-medium"
-                        >
-                          {blog.category}
-                        </Badge>
-                        <time className="text-gray-400 mont-medium">
-                          {blog.date}
-                        </time>
-                      </div>
-                      <h2 className="text-xl md:text-2xl alan-semibold text-balance">
-                        {blog.title}
-                      </h2>
-                      <p className="mont-medium text-pretty">
-                        {blog.excerpt}
-                      </p>
-                      <div className="flex items-center justify-between pt-2">
-                        <span className="text-sm alan-medium text-black">
-                          {blog.author}
-                        </span>
-                        <div className="flex items-center gap-2 mont-semibold text-sm text-blue-600">
-                          <span>Read more</span>
-                          <ArrowUpIcon className="rotate-45" />
-                        </div>
-                      </div>
-                    </div>
-                  </article>
-                </a>
+                  </div>
+                </div>
               </Link>
-            </motion.div>
           ))}
         </motion.div>
       </div>
