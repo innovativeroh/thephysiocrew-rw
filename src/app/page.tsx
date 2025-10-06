@@ -12,6 +12,7 @@ import MoreThanSection from '@/components/home/MoreThan'
 import ValdSection from '@/components/home/ValdSection'
 
 const page = () => {
+  //pushed
   return (
     <>
       <Hero />
