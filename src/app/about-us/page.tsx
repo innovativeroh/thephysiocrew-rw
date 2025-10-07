@@ -3,7 +3,7 @@
 import Image from "next/image";
 import React from "react";
 import Team from "../../../public/Images/team.jpg";
-import { StarIcon } from "lucide-react";
+import { StarIcon, Target, Handshake, ShieldCheck, HeartHandshake, Award } from "lucide-react";
 import { motion } from "framer-motion";
 import CoveredSection from "@/components/home/covered";
 import TeamsSections from "@/components/home/team";
@@ -30,17 +30,48 @@ const AboutUsSection = () => {
     },
   ];
 
+  // Data for Core Values
+  const coreValues = [
+    {
+      name: "Respect",
+      icon: Handshake,
+      description: "Treating every individual with dignity and consideration.",
+    },
+    {
+      name: "Integrity",
+      icon: ShieldCheck,
+      description: "Upholding the highest standards of professionalism and ethics.",
+    },
+    {
+      name: "Compassion",
+      icon: HeartHandshake,
+      description: "Providing empathetic care that supports your well-being.",
+    },
+    {
+      name: "Excellence",
+      icon: Award,
+      description: "Striving for the best outcomes through continuous learning.",
+    },
+  ];
+
   // Reusable variant for items that fade in and slide up
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
   };
-  
+
   // Reusable variant for containers that stagger their children's animations
   const staggerContainer = {
-      hidden: { opacity: 0 },
-      visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
-  }
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
+  };
+
+  // Variant for individual list items
+  const itemVariant = {
+    hidden: { opacity: 0, y: 20 },
+    // FIX APPLIED HERE: Added 'as const' to the ease property
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
+  };
 
   return (
     <section>
@@ -123,14 +154,70 @@ const AboutUsSection = () => {
               </div>
             </motion.div>
 
-            {/* Stats section with its own stagger container for the numbers */}
+            {/* Purpose and Core Values Section */}
+            <motion.div 
+              className="mt-16 sm:mt-24 py-16 sm:py-20 rounded-2xl" 
+              variants={fadeIn}
+            >
+              <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                  
+                  {/* Our Purpose Card */}
+                  <div className="space-y-6">
+                    <div className="flex items-center gap-4">
+                      <div className=" text-blue-600 p-3 rounded-full flex-shrink-0">
+                        <Target className="w-8 h-8" strokeWidth={2} />
+                      </div>
+                      <h3 className="text-3xl lg:text-4xl font-bold tracking-tight text-gray-900">
+                        Our Purpose
+                      </h3>
+                    </div>
+                    <p className="text-lg leading-8 text-gray-700">
+                      To display best practice by providing a bespoke care plan addressing patient goals through continued commitment to professional development.
+                    </p>
+                  </div>
+
+                  {/* Our Core Values Grid */}
+                  <div className="space-y-6">
+                     <h3 className="text-3xl lg:text-4xl font-bold tracking-tight text-gray-900">
+                        Our Core Values
+                      </h3>
+                    <motion.ul
+                      className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+                      variants={staggerContainer}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true, amount: 0.3 }}
+                    >
+                      {coreValues.map((value) => (
+                        <motion.li 
+                          key={value.name} 
+                          variants={itemVariant}
+                          className="p-6 rounded-xl shadow-sm transition-all hover:shadow-md hover:-translate-y-1"
+                        >
+                          <div className="flex items-center gap-4">
+                            <div className="bg-blue-100 text-blue-600 p-2.5 rounded-full flex-shrink-0">
+                              <value.icon className="w-6 h-6" strokeWidth={2} />
+                            </div>
+                            <h4 className="text-xl font-semibold text-gray-900">{value.name}</h4>
+                          </div>
+                          <p className="mt-3 text-base text-gray-600">
+                            {value.description}
+                          </p>
+                        </motion.li>
+                      ))}
+                    </motion.ul>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Stats section */}
             <motion.div className="mt-16 sm:mt-20" variants={fadeIn}>
               <dl className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
                 {statsData.map((stat, index) => (
                   <motion.div
                     key={stat.label}
-                    // This is a great way to handle it, no changes needed here.
-                    // The delay is based on the item's index, creating a nice cascade.
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -149,7 +236,6 @@ const AboutUsSection = () => {
           </div>
         </motion.div>
       </main>
-      <CoveredSection />
       <TeamsSections />
       <Footer />
     </section>

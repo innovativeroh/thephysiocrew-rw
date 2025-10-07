@@ -1,121 +1,52 @@
-"use client"; // Required for animations
+"use client";
 
-import React from "react";
-import arrowRightUp from "../../../public/icons/arrow-right-up-line.svg";
-import Image from "next/image";
-import { services } from "@/lib/data";
-import { motion } from "framer-motion"; // Import motion
+import { useEffect, useState } from "react";
+import { client } from "../../../sanity/lib/client";
+import ServicesClient, { Service } from "./services-client";
+import { groq } from "next-sanity";
 
+// Define the GROQ query to fetch all services
+
+// Make this an async Server Component
 const Services = () => {
+  const [services, setServices] = useState<Service[]>([]);
+  const [error, setError] = useState<any | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  // Variants for the grid container to stagger its children
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15, // Delay between each card animation
-      },
-    },
-  };
+  const servicesQuery = groq`*[_type == "service"]{
+        _id,
+        title,
+        "slug": slug.current,
+        description,
+        "imageUrl": image.asset->url, 
+        "alt": image.alt,             
+        color
+      }`;
+  useEffect(() => {
+    const fetchTeams = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        setServices([]);
+        const response = await client.fetch(servicesQuery, undefined, {
+          cache: "no-cache",
+        });
 
-  // Variants for each service card
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut" as const,
-      },
-    },
-  };
+        const data = response;
+        setServices(data);
+        setLoading(false);
+      } catch (err) {
+        setError(err);
+        console.log(err);
+      }
+    };
+    fetchTeams();
+  }, []);
 
-  return (
-    <section>
-      <main className="container mx-auto">
-        <div className="px-5 pt-32 md:pt-48 w-full flex-center flex-col gap-16">
-          <div className="w-full flex flex-col md:flex-row items-start justify-between gap-4">
-            {/* Animate heading to slide in from the left */}
-            <motion.h1
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 0.6, ease: "easeOut" as const }}
-              className="text-3xl md:text-4xl lg:text-5xl text-black alan-semibold max-w-[500px]"
-            >
-              Quality Service You Can Get
-            </motion.h1>
+  
 
-            {/* Animate paragraph to slide in from the right */}
-            <motion.p
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 0.6, ease: "easeOut" as const, delay: 0.1 }}
-              className="text-lg max-w-[500px] text-gray-900 mont-medium"
-            >
-              We provide a wide range of health services. Covering all of your
-              healthcare needs.
-            </motion.p>
-          </div>
-
-          {/* Staggered animation container for the services grid */}
-          <motion.div
-            className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 place-items-center place-content-center"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-          >
-            {services.map((service, index) => (
-              // Each card animates based on the cardVariants
-              <motion.div
-                key={index}
-                variants={cardVariants}
-                className="group relative h-[500px] w-full max-w-[400px] rounded-3xl bg-neutral-200 overflow-hidden"
-              >
-                <img
-                  src={service.imageUrl}
-                  alt={service.title}
-                  className="absolute inset-0 w-full h-full object-cover scale-100 group-hover:scale-110 transition-transform duration-500 ease-in-out"
-                />
-                <div
-                  className="absolute inset-0 bg-black/10 group-hover:opacity-0 transition-opacity duration-500 ease-in-out"
-                />
-                <div
-                  className="absolute inset-0 mix-blend-multiply opacity-60 group-hover:opacity-0 transition-opacity duration-500 ease-in-out"
-                  style={{ backgroundColor: service.color }}
-                />
-
-                <div className="relative z-10 h-full w-full p-7 flex flex-col justify-between">
-                  <h1 className="text-2xl text-white alan-medium">
-                    {service.title}
-                  </h1>
-
-                  <div className="relative h-[120px] overflow-hidden">
-                    <p className="absolute top-0 text-sm mont-medium text-white transition-all duration-500 ease-in-out opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0">
-                      {service.description}
-                    </p>
-                    <div className="absolute bottom-0 bg-white rounded-full p-3 shadow-lg max-w-fit transition-all duration-500 ease-in-out opacity-100 translate-y-0 group-hover:opacity-0 group-hover:translate-y-8">
-                      <Image
-                        src={arrowRightUp}
-                        alt="Go to service details"
-                        width={30}
-                        height={30}
-                        className="h-7 w-auto"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </main>
-    </section>
-  );
+  // Pass the fetched data to the Client Component
+  return <ServicesClient services={services} />;
 };
 
 export default Services;

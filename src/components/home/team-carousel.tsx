@@ -24,7 +24,7 @@ export const TeamCarousel = ({ teamMembers }: { teamMembers: Team[] }) => {
             <div
               key={team._id}
               onClick={() => setSelectedMember(team)}
-              className="cursor-pointer relative w-full max-w-[350px] rounded-3xl overflow-hidden group mx-4"
+              className="cursor-pointer relative w-full max-w-[350px] rounded-3xl overflow-hidden group mx-2"
             >
               <Image
                 src={team.imageUrl}
@@ -44,8 +44,8 @@ export const TeamCarousel = ({ teamMembers }: { teamMembers: Team[] }) => {
             </div>
           ))}
         </Marquee>
-        <div className="from-background pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r"></div>
-        <div className="from-background pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l"></div>
+        <div className="from-background/60 pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r"></div>
+        <div className="from-background/60 pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l"></div>
       </motion.div>
 
       <AnimatePresence>

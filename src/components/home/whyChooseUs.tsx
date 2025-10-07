@@ -1,6 +1,11 @@
 "use client"; // Required for Framer Motion animations
 
-import { Diamond, Truck, Umbrella } from "lucide-react";
+import {
+  ClipboardList,
+  CalendarCheck,
+  ShieldCheck,
+  Users,
+} from "lucide-react";
 import React from "react";
 import lines from "../../../public/Images/lines.png";
 import Image from "next/image";
@@ -8,24 +13,24 @@ import { motion } from "framer-motion"; // Import motion
 
 const features = [
   {
-    icon: Truck,
+    icon: ClipboardList,
     title:
-      "Personalised treatment plans for sports injuries, back & neck pain, sciatica, and",
+      "Personalised treatment plans for sports injuries, back & neck pain, sciatica, and more.",
     highlighted: false,
   },
   {
-    icon: Umbrella,
+    icon: CalendarCheck,
     title: "No referral needed – just book and come in!",
     highlighted: true,
   },
   {
-    icon: Diamond,
+    icon: ShieldCheck,
     title: "Option for No Gap physiotherapy with Medicare (EPC) referrals.",
     highlighted: true,
   },
   {
-    icon: Diamond,
-    title: "Trusted by thousands across Tullamarine, Carlton & Melbourne",
+    icon: Users,
+    title: "Trusted by thousands across Tullamarine, Carlton & Melbourne.",
     highlighted: false,
   },
 ];
@@ -78,7 +83,7 @@ const WhyChooseUs = () => {
               Why choose us?
             </motion.h1>
           </div>
-          
+
           {/* Motion container for the grid */}
           <motion.div
             className="flex-[1] w-full grid grid-cols-1 gap-5 md:grid-cols-4 md:place-items-start place-items-center place-content-center max-w-[1380px] mx-auto"
@@ -104,7 +109,11 @@ const WhyChooseUs = () => {
               >
                 <div
                   className={`mb-4 flex h-12 w-12 items-center justify-center rounded-full
-                    ${feature.highlighted ? "bg-white text-[#0F62BB]" : "bg-gray-100 text-gray-700"}`}
+                    ${
+                      feature.highlighted
+                        ? "bg-white text-[#0F62BB]"
+                        : "bg-gray-100 text-gray-700"
+                    }`}
                 >
                   <feature.icon className="h-6 w-6" strokeWidth={1.5} />
                 </div>

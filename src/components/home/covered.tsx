@@ -106,7 +106,7 @@ const CoveredSection = () => {
   };
 
   return (
-    <section className="pt-20">
+    <section className="pt-20 pb-20">
       <main className="container mx-auto">
         <div className="px-5 pt-10 w-full flex flex-col items-center gap-16">
           {/* Animated Header */}
@@ -130,7 +130,7 @@ const CoveredSection = () => {
               We treat back & neck pain, sports/work injuries, sciatica,
               whiplash, post-op rehab, osteoarthritis, tendon issues,
               neurological conditions, pre/post-natal pain, balance/vertigo, and
-              more. Personalised care to help you move better.
+              more. Personalised care to help you move better. 
             </motion.p>
           </motion.div>
 
@@ -151,10 +151,7 @@ const CoveredSection = () => {
                 <div
                   className={`p-3 bg-gradient-to-br ${treatment.bg} rounded-lg group-hover:scale-105 transition-transform duration-300`}
                 >
-                  <treatment.icon
-                    size={24}
-                    className={treatment.iconColor}
-                  />
+                  <treatment.icon size={24} className={treatment.iconColor} />
                 </div>
                 <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mt-5 mb-3 leading-tight">
                   {treatment.title}

@@ -47,7 +47,7 @@ const Hero = () => {
       name: "Tyler Durden",
       designation: "Soap Developer",
       image:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%D%3D&auto=format&fit=crop&w=3540&q=80",
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80",
     },
     {
       id: 6,
@@ -87,41 +87,39 @@ const Hero = () => {
       opacity: 1,
       transition: {
         duration: 0.6,
-        // Add "as const" here
         ease: "easeOut" as const,
       },
     },
   };
-  
+
   // Animation variants for the image slider
   const sliderVariants = {
     initial: { opacity: 0, scale: 1.05 },
-    animate: { 
-      opacity: 1, 
-      scale: 1, 
-      transition: { 
-        duration: 1, 
-        ease: [0.43, 0.13, 0.23, 0.96] as const 
-      } 
+    animate: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 1,
+        ease: [0.43, 0.13, 0.23, 0.96] as const,
+      },
     },
-    exit: { 
-      opacity: 0, 
-      scale: 0.95, 
-      transition: { 
-        duration: 1, 
-        ease: [0.43, 0.13, 0.23, 0.96] as const 
-      } 
+    exit: {
+      opacity: 0,
+      scale: 0.95,
+      transition: {
+        duration: 1,
+        ease: [0.43, 0.13, 0.23, 0.96] as const,
+      },
     },
   };
-
 
   return (
     <div className="h-[850px] relative w-full flex items-center justify-start overflow-hidden">
       <div className="w-full h-full absolute top-0 left-0 HeroBackground z-[-2]"></div>
-      
+
       {/* Start of Hero Slider with Framer Motion */}
       <div className="hidden lg:block absolute top-0 right-0 w-[750px] h-[850px] z-[-2]">
-        <AnimatePresence initial={false} mode="wait">
+        <AnimatePresence initial={false}>
           <motion.div
             key={currentIndex}
             variants={sliderVariants}
@@ -150,28 +148,28 @@ const Hero = () => {
           <AnimatedTooltip items={people} />
         </motion.div>
 
+        {/* MODIFICATION: Updated heading text */}
         <motion.h1
           variants={itemVariants}
-          className="text-3xl md:text-4xl lg:text-6xl text-white alan-semibold max-w-[700px]"
+          className="text-3xl md:text-4xl lg:text-4xl text-white alan-semibold max-w-[700px]"
         >
-          Empowering you to live
-          <br /> <span className="text-[#ee9325] alan-bold">pain-free</span>{" "}
-          with expert hands-on care.
+          The Physio Crew – Melbourne’s trusted experts in sports injuries,
+          musculoskeletal care, and post-operative rehab.
         </motion.h1>
 
+        {/* MODIFICATION: Updated description text */}
         <motion.p
           variants={itemVariants}
-          className="text-xl max-w-[500px] text-white mont-medium mt-3"
+          className="text-sm max-w-[600px] text-white mont-medium mt-3"
         >
-          We provide personalised treatment & recovery plans to achieve your
-          health goals
+          Whether you're chasing a personal best, recovering from surgery, or
+          simply want to live pain-free, The Physio Crew is your trusted
+          partner in movement and recovery. Our expert team of physiotherapists
+          combines cutting-edge technology with hands-on care to deliver
+          results that matter.
         </motion.p>
 
-        <motion.div
-          variants={itemVariants}
-          className="inline-block mt-5"
-        >
-          {/* Added hover and tap animations for the button */}
+        <motion.div variants={itemVariants} className="inline-block mt-5">
           <motion.div
             whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
             whileTap={{ scale: 0.95 }}
