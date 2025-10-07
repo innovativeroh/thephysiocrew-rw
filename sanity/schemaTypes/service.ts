@@ -24,12 +24,18 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "subDescription",
+      title: "Sub Description",
+      type: "string",
+      description: "Subtitle for the hero section and card overviews.",
+      validation: (Rule) => Rule.required().max(150),
+    }),
+    defineField({
       name: "description",
-      title: "Short Description (for cards)",
+      title: "Description",
       type: "text",
-      description:
-        "A brief description that appears on the service card hover.",
-      validation: (Rule) => Rule.required().max(200),
+      description: "Detailed description for the about section on the service page.",
+      validation: (Rule) => Rule.required().max(1000),
     }),
     defineField({
       name: "image",
@@ -49,12 +55,11 @@ export default defineType({
       ],
       validation: (Rule) => Rule.required(),
     }),
-    // 👇 NEW FIELD FOR THE DETAILS PAGE IMAGE
     defineField({
-      name: "mainImage",
-      title: "Main Page Image",
+      name: "heroImage",
+      title: "Hero Image",
       type: "image",
-      description: "Image shown at the top of the service details page.",
+      description: "Main image shown at the top of the service details page.",
       options: {
         hotspot: true,
       },
@@ -68,29 +73,36 @@ export default defineType({
       ],
       validation: (Rule) => Rule.required(),
     }),
-    // 👇 NEW FIELD FOR THE RICH TEXT CONTENT
     defineField({
-      name: "content",
-      title: "Content",
+      name: "keyPoints",
+      title: "Key Points",
       type: "array",
       of: [
         {
-          type: "block", // This enables the rich text editor
-          styles: [
-            { title: "Normal", value: "normal" },
-            { title: "H2", value: "h2" },
-            { title: "H3", value: "h3" },
-            { title: "Quote", value: "blockquote" },
+          type: "object",
+          name: "keyPoint",
+          fields: [
+            {
+              name: "title",
+              title: "Title",
+              type: "string",
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: "description",
+              title: "Description",
+              type: "text",
+              validation: (Rule) => Rule.required(),
+            },
           ],
-          marks: {
-            decorators: [
-              { title: "Strong", value: "strong" },
-              { title: "Emphasis", value: "em" },
-            ],
+          preview: {
+            select: {
+              title: "title",
+            },
           },
         },
       ],
-      description: "The main content for the service details page.",
+      validation: (Rule) => Rule.min(1).max(6),
     }),
     defineField({
       name: "color",

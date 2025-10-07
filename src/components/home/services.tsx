@@ -23,7 +23,7 @@ const Services = () => {
         color
       }`;
   useEffect(() => {
-    const fetchTeams = async () => {
+    const fetchServices = async () => {
       try {
         setLoading(true);
         setError(null);
@@ -40,7 +40,7 @@ const Services = () => {
         console.log(err);
       }
     };
-    fetchTeams();
+    fetchServices();
   }, []);
 
   
