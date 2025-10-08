@@ -27,8 +27,8 @@ export interface RelatedPost {
 }
 
 // Main Page Component (Server Component for data fetching)
-export default async function Page({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
 
   // GROQ query to fetch a single blog post by its slug
   const postQuery = groq`*[_type == "blog" && slug.current == $slug][0] {
