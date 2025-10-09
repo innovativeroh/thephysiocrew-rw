@@ -20,7 +20,7 @@ const page = () => {
       <MoreThanSection />
       <ValdSection />
       {/* <AboutUsSectionPushed /> */}
-      {/* <TestimonialsSection /> */}
+      {/* <TestimonialsSectionPushed /> */}
       <ReelsSection />
       <BrandsSection />
       <CtaSection />
