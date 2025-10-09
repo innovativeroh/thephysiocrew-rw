@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import CoveredSection from "@/components/home/covered";
 import TeamsSections from "@/components/home/team";
 import Footer from "@/components/core/footer";
+import AdministrationSection from "@/components/home/administration";
 
 const AboutUsSection = () => {
   // Stats relevant to The Physio Crew
@@ -237,6 +238,7 @@ const AboutUsSection = () => {
         </motion.div>
       </main>
       <TeamsSections />
+      <AdministrationSection /> 
       <Footer />
     </section>
   );

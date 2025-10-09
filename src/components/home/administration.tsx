@@ -1,11 +1,98 @@
 "use client";
-
-import Image from "next/image";
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import { groq } from "next-sanity";
+import Error from "next/error";
+import { client } from "../../../sanity/lib/client";
 import { X } from "lucide-react";
+import Image from "next/image";
 import { Marquee } from "../ui/marquee";
-import { Team } from "./team";
+import { motion, AnimatePresence } from "framer-motion";
+
+export interface Team {
+  _id: string;
+  imageUrl: string;
+  name: string;
+  role?: string;
+  education: string;
+  description: string;
+}
+
+const AdministrationSection = () => {
+  const [administrator, setAdministrator] = useState<Team[]>([]);
+  const [error, setError] = useState<any | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  const teamQuery = groq`*[_type == "Administrator"] {
+    _id,
+    name,
+    "imageUrl": image.asset->url,
+    description
+  }`;
+  useEffect(() => {
+    const fetchTeams = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        setAdministrator([]);
+        const response = await client.fetch(teamQuery, undefined, {
+          cache: "no-cache",
+          next: {
+            tags: ["team"],
+          },
+        });
+
+        const data = await response;
+        setAdministrator(data);
+        setLoading(false);
+      } catch (err) {
+        setError(err);
+        console.log(err);
+      }
+    };
+    fetchTeams();
+  }, []);
+
+  return (
+    <section>
+      <main>
+        <div className="px-5 pt-32 pb-10 w-full flex-center flex-col gap-16">
+          <div className="w-full flex flex-col md:flex-row items-start justify-between gap-3 container mx-auto">
+            {/* --- ANIMATION ADDED --- */}
+            <motion.h1
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="text-3xl md:text-4xl lg:text-5xl text-left alan-semibold"
+            >
+              Administration
+            </motion.h1>
+            {/* --- ANIMATION ADDED --- */}
+            <motion.p
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="text-sm max-w-[500px] text-gray-900 mont-medium"
+            >
+              Our crew is more than administrators—we’re relationship builders,
+              seamless supporters, and your welcoming allies. Together, we blend
+              warmth, efficiency, and genuine care to create smooth experiences,
+              nurture strong connections, and instill confidence in every visit
+              to The Physio Crew.
+            </motion.p>
+          </div>
+
+          {/* --- ANIMATION ADDED --- */}
+          <h1 className="text-lg ">{}</h1>
+          <TeamCarousel teamMembers={administrator}  />
+        </div>
+      </main>
+    </section>
+  );
+};
+
+export default AdministrationSection;
 
 export const TeamCarousel = ({ teamMembers, }: { teamMembers: Team[] }) => {
   const [selectedMember, setSelectedMember] = useState<Team | null>(null);
@@ -19,7 +106,7 @@ export const TeamCarousel = ({ teamMembers, }: { teamMembers: Team[] }) => {
         transition={{ duration: 0.7, ease: "easeOut" }}
         className="w-full flex-center flex-col gap-10 relative"
       >
-        <Marquee pauseOnHover className="[--duration:20s]">
+        <Marquee pauseOnHover className="[--duration:20s]" reverse>
           {teamMembers.map((team) => (
             <div
               key={team._id}
