@@ -124,23 +124,18 @@ const Hero = () => {
 
         <motion.h1
           variants={itemVariants}
-          className="text-3xl md:text-4xl lg:text-5xl text-white alan-semibold max-w-[750px]"
+          className="text-3xl md:text-4xl lg:text-6xl text-white alan-semibold max-w-[900px]"
         >
-          Melbourne’s trusted experts in{" "}
-          <span className="text-[#ee9325]">sports</span> injuries,{" "}
-          <span className="text-[#ee9325]">musculoskeletal</span> care, and
-          post-operative <span className="text-[#ee9325]">rehab</span>.
+          Melbourne’s trusted experts in sports injuries, musculoskeletal care,
+          and <span className="text-orange-500">post-operative</span> rehab.
         </motion.h1>
 
         <motion.p
           variants={itemVariants}
-          className="text-sm max-w-[650px] text-white mont-medium mt-3"
+          className="text-xl max-w-[650px] text-white mont-medium mt-3"
         >
-          Whether you&apos;re chasing a personal best, recovering from surgery,
-          or simply want to live pain-free, The Physio Crew is your trusted
-          partner in movement and recovery. Our expert team of physiotherapists
-          combines cutting-edge technology with hands-on care to deliver results
-          that matter.
+          Our expert team of physiotherapists provide hands-on care and creates
+          personalised treatment plans that help achieve your health goals.
         </motion.p>
 
         <motion.div variants={itemVariants} className="inline-block mt-5">
@@ -149,7 +144,9 @@ const Hero = () => {
             whileTap={{ scale: 0.95 }}
           >
             <Link
-              href={"https://the-physio-crew-tullamarine-pty-ltd.au3.cliniko.com/bookings"}
+              href={
+                "https://the-physio-crew-tullamarine-pty-ltd.au3.cliniko.com/bookings"
+              }
               target="_blank"
               className="flex alan-semibold text-lg flex-wrap mt-5 gap-4 text-blue-950 bg-white py-3 px-6 rounded-2xl"
             >
