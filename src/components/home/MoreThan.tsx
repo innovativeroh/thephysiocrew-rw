@@ -5,6 +5,7 @@ import { ArrowRight, Dumbbell, Zap, HeartPulse } from "lucide-react";
 import Image from "next/image";
 import GYM from "../../../public/Images/gym-2.jpeg";
 import { motion } from "framer-motion"; // Import motion
+import Link from "next/link";
 
 const ValdSection = () => {
   // Variants for the text content container to stagger the animation of its children
@@ -102,13 +103,14 @@ const ValdSection = () => {
             </motion.ul>
 
             <motion.div variants={textItemVariants} className="mt-10">
-              <a
-                href="#"
+              <Link
+                href="https://the-physio-crew-tullamarine-pty-ltd.au3.cliniko.com/bookings"
+                target="_blank"
                 className="group inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-8 py-4 text-lg font-bold text-white shadow-lg transition-transform duration-300 hover:scale-105 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
               >
                 Book Your Session
                 <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-              </a>
+              </Link>
             </motion.div>
           </motion.div>
         </main>

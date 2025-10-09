@@ -67,7 +67,7 @@ const cardVariants: Variants = {
 
 const ServicesClient: React.FC<ServicesClientProps> = ({ services }) => {
   return (
-    <section>
+    <section id="services">
       <main className="container mx-auto">
         <motion.div
           className="px-5 pt-32 md:pt-48 w-full flex-center flex-col gap-16"

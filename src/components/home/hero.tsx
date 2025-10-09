@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import { AnimatedTooltip } from "../ui/animated-tooltip";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-// Import motion and AnimatePresence from framer-motion
-import { motion, AnimatePresence } from "framer-motion";
+// Import motion from framer-motion for the text animations
+import { motion } from "framer-motion";
 
 const Hero = () => {
   const images = [
@@ -92,49 +92,23 @@ const Hero = () => {
     },
   };
 
-  // Animation variants for the image slider
-  const sliderVariants = {
-    initial: { opacity: 0, scale: 1.05 },
-    animate: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 1,
-        ease: [0.43, 0.13, 0.23, 0.96] as const,
-      },
-    },
-    exit: {
-      opacity: 0,
-      scale: 0.95,
-      transition: {
-        duration: 1,
-        ease: [0.43, 0.13, 0.23, 0.96] as const,
-      },
-    },
-  };
-
   return (
     <div className="h-[850px] relative w-full flex items-center justify-start overflow-hidden">
       <div className="w-full h-full absolute top-0 left-0 HeroBackground z-[-2]"></div>
 
-      {/* Start of Hero Slider with Framer Motion */}
+      {/* MODIFICATION: Simple Image Switch */}
       <div className="hidden lg:block absolute top-0 right-0 w-[750px] h-[850px] z-[-2]">
-        <AnimatePresence initial={false}>
-          <motion.div
-            key={currentIndex}
-            variants={sliderVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            className="absolute inset-0"
-          >
-            <img
-              src={images[currentIndex]}
-              alt={`Slide ${currentIndex}`}
-              className="w-full h-full rounded-bl-[500px] object-cover"
-            />
-          </motion.div>
-        </AnimatePresence>
+        {images.map((image, index) => (
+          <img
+            key={index}
+            src={image}
+            alt={`Slide ${index}`}
+            className="absolute inset-0 w-full h-full rounded-bl-[500px] object-cover transition-opacity duration-1000 ease-in-out"
+            style={{
+              opacity: index === currentIndex ? 1 : 0,
+            }}
+          />
+        ))}
       </div>
 
       {/* Main content container with staggered animations */}
@@ -148,25 +122,25 @@ const Hero = () => {
           <AnimatedTooltip items={people} />
         </motion.div>
 
-        {/* MODIFICATION: Updated heading text */}
         <motion.h1
           variants={itemVariants}
-          className="text-3xl md:text-4xl lg:text-4xl text-white alan-semibold max-w-[700px]"
+          className="text-3xl md:text-4xl lg:text-5xl text-white alan-semibold max-w-[750px]"
         >
-          The Physio Crew – Melbourne’s trusted experts in sports injuries,
-          musculoskeletal care, and post-operative rehab.
+          Melbourne’s trusted experts in{" "}
+          <span className="text-[#ee9325]">sports</span> injuries,{" "}
+          <span className="text-[#ee9325]">musculoskeletal</span> care, and
+          post-operative <span className="text-[#ee9325]">rehab</span>.
         </motion.h1>
 
-        {/* MODIFICATION: Updated description text */}
         <motion.p
           variants={itemVariants}
-          className="text-sm max-w-[600px] text-white mont-medium mt-3"
+          className="text-sm max-w-[650px] text-white mont-medium mt-3"
         >
-          Whether you're chasing a personal best, recovering from surgery, or
-          simply want to live pain-free, The Physio Crew is your trusted
+          Whether you&apos;re chasing a personal best, recovering from surgery,
+          or simply want to live pain-free, The Physio Crew is your trusted
           partner in movement and recovery. Our expert team of physiotherapists
-          combines cutting-edge technology with hands-on care to deliver
-          results that matter.
+          combines cutting-edge technology with hands-on care to deliver results
+          that matter.
         </motion.p>
 
         <motion.div variants={itemVariants} className="inline-block mt-5">
@@ -175,7 +149,8 @@ const Hero = () => {
             whileTap={{ scale: 0.95 }}
           >
             <Link
-              href={"#"}
+              href={"https://the-physio-crew-tullamarine-pty-ltd.au3.cliniko.com/bookings"}
+              target="_blank"
               className="flex alan-semibold text-lg flex-wrap mt-5 gap-4 text-blue-950 bg-white py-3 px-6 rounded-2xl"
             >
               Book Now <ArrowRight />

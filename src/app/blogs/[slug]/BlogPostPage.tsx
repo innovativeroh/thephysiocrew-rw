@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Clock, Facebook, Linkedin, Mail, Twitter, User } from "lucide-react";
 import { PortableText } from "@portabletext/react";
 import { BlogPost, RelatedPost } from "./page"; // Import interfaces from the page file
+import Footer from "@/components/core/footer";
 
 // A simple utility to format dates for better readability
 const formatDate = (dateString: string) => {
@@ -26,6 +27,7 @@ const BlogPostPageComponent = ({
   }
 
   return (
+    <>
     <div className="pt-20 font-sans">
       <main className="max-w-5xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
         {/* Main Content */}
@@ -111,6 +113,8 @@ const BlogPostPageComponent = ({
         </div>
       </main>
     </div>
+    <Footer />
+    </>
   );
 };
 
