@@ -10,123 +10,159 @@ import {
   ArrowRight,
   Calendar,
   ChevronDown,
+  User,
+  AtSign,
+  Briefcase,
+  MessageSquare,
 } from "lucide-react";
+import Link from "next/link";
+import Footer from "@/components/core/footer";
+
+// Reusable component for form inputs with icons
+const FormInput = ({ icon: Icon, ...props }: any) => (
+  <div className="relative">
+    <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+      <Icon className="h-5 w-5 text-slate-400" />
+    </div>
+    <input
+      {...props}
+      className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-colors placeholder:text-slate-500"
+    />
+  </div>
+);
+
+// Reusable component for clinic information items
+const InfoItem = ({ icon: Icon, title, children }: any) => (
+  <div className="flex items-start space-x-4 group">
+    <div className="flex-shrink-0 mt-1">
+      <Icon className="h-6 w-6 text-blue-600 group-hover:scale-110 transition-transform duration-300" />
+    </div>
+    <div>
+      <h5 className="font-semibold text-slate-800 mb-1">{title}</h5>
+      <div className="text-slate-600">{children}</div>
+    </div>
+  </div>
+);
 
 const ContactPage: React.FC = () => {
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-slate-50 pt-24 md:pt-32 pb-24">
-      <div className="container mx-auto px-4">
-        <motion.div
-          className="text-center mb-16 md:mb-20"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-            Let's Connect
-          </h1>
-          <h2 className="text-2xl font-medium text-blue-600 mb-6">
-            Book Your Physiotherapy Session Today
-          </h2>
-          <p className="text-slate-600 text-lg max-w-3xl mx-auto mb-8">
-            Experience expert physiotherapy care at The Physio Crew. Our
-            dedicated team is ready to help you achieve optimal health and
-            wellness. Reach out to us via phone, email, or our online booking
-            form.
-          </p>
-          <div className="flex justify-center gap-4">
-            <a
-              href="tel:+61123456789"
-              className="inline-flex items-center px-6 py-3 rounded-full bg-blue-600 text-white font-semibold hover:bg-blue-700 shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5"
-            >
-              <Phone className="w-5 h-5 mr-2" />
-              Call Now
-            </a>
-            <a
-              href="#booking-form"
-              className="inline-flex items-center px-6 py-3 rounded-full border-2 border-blue-600 text-blue-600 font-semibold hover:bg-blue-50 transition-colors"
-            >
-              <Calendar className="w-5 h-5 mr-2" />
-              Book Online
-            </a>
-          </div>
-        </motion.div>
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+    },
+  };
 
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
+  return (
+    <>
+    <div className="min-h-screen bg-slate-50">
+      {/* Hero Section */}
+      <div className="relative bg-gradient-to-b from-white to-slate-50 pt-28 md:pt-40 pb-20 overflow-hidden">
+        <div
+          className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"
+          style={{ backgroundRepeat: "repeat" }}
+        ></div>
+        <div className="container mx-auto px-4 relative">
+          <motion.div
+            className="text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-4 tracking-tight">
+              Get in Touch
+            </h1>
+            <h2 className="text-xl md:text-2xl font-medium text-blue-600 mb-6">
+              Your Path to Recovery Starts Here
+            </h2>
+            <p className="text-slate-600 text-lg max-w-3xl mx-auto mb-10">
+              We're here to help you on your journey to better health. Contact
+              us to schedule an appointment or ask any questions you may have.
+              Our team is ready to assist you.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <a
+                href="tel:+61391168691"
+                target="_blank"
+                className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-blue-600 text-white font-semibold hover:bg-blue-700 shadow-lg hover:shadow-blue-300/50 transition-all transform hover:-translate-y-1"
+              >
+                <Phone className="w-5 h-5 mr-2" />
+                Call Tullamarine
+              </a>
+              <Link
+                href="https://the-physio-crew-tullamarine-pty-ltd.au3.cliniko.com/bookings"
+                className="inline-flex items-center justify`-center px-8 py-3 rounded-full border-2 border-slate-300 bg-white text-slate-700 font-semibold hover:bg-slate-100 hover:border-slate-400 transition-all transform hover:-translate-y-1"
+              >
+                <Calendar className="w-5 h-5 mr-2" />
+                Book Appointment
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="container mx-auto px-4 pb-24 md:pb-32">
         <motion.div
-          className="grid grid-cols-1 lg:grid-cols-5 gap-12"
+          className="grid grid-cols-1 lg:grid-cols-5 gap-10 md:gap-12"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ staggerChildren: 0.2 }}
+          viewport={{ once: true, amount: 0.1 }}
+          variants={containerVariants}
         >
           {/* Form Section */}
           <motion.div
-            className="lg:col-span-3 bg-white p-8 sm:p-10 rounded-2xl shadow-xl border border-slate-100"
+            className="lg:col-span-3 bg-white p-8 sm:p-10 rounded-2xl shadow-2xl shadow-slate-200/50 border border-slate-100"
             id="booking-form"
-            variants={{
-              hidden: { opacity: 0, x: -50 },
-              visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
-            }}
+            variants={itemVariants}
           >
-            <h3 className="text-3xl font-bold text-slate-900 mb-6">
+            <h3 className="text-3xl font-bold text-slate-900 mb-2">
               Book Your Appointment
             </h3>
+            <p className="text-slate-500 mb-8">
+              Fill out the form below and we'll get back to you shortly.
+            </p>
             <form className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-slate-600 mb-2">
-                    First Name *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. John"
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-colors"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-600 mb-2">
-                    Last Name *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. Doe"
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-colors"
-                  />
-                </div>
+                <FormInput
+                  icon={User}
+                  type="text"
+                  required
+                  placeholder="First Name"
+                />
+                <FormInput
+                  icon={User}
+                  type="text"
+                  required
+                  placeholder="Last Name"
+                />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-slate-600 mb-2">
-                    Phone Number *
-                  </label>
-                  <input
-                    type="tel"
-                    required
-                    placeholder="Your contact number"
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-colors"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-600 mb-2">
-                    Email Address *
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    placeholder="your@email.com"
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-colors"
-                  />
-                </div>
+                <FormInput
+                  icon={Phone}
+                  type="tel"
+                  required
+                  placeholder="Phone Number"
+                />
+                <FormInput
+                  icon={AtSign}
+                  type="email"
+                  required
+                  placeholder="Email Address"
+                />
               </div>
               <div className="relative">
-                <label className="block text-sm font-medium text-slate-600 mb-2">
-                  Service Type *
-                </label>
+                <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+                  <Briefcase className="h-5 w-5 text-slate-400" />
+                </div>
                 <select
                   required
-                  className="w-full appearance-none px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-colors"
+                  className="w-full appearance-none pl-12 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-colors text-slate-600"
                 >
                   <option value="">Select a service</option>
                   <option value="general">General Physiotherapy</option>
@@ -134,21 +170,23 @@ const ContactPage: React.FC = () => {
                   <option value="rehabilitation">Rehabilitation</option>
                   <option value="massage">Therapeutic Massage</option>
                 </select>
-                <ChevronDown className="absolute right-4 top-10 h-5 w-5 text-slate-400 pointer-events-none" />
+                <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400 pointer-events-none" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-600 mb-2">
-                  Additional Notes
-                </label>
-                <textarea
-                  placeholder="Tell us about your condition or any specific requirements..."
-                  rows={4}
-                  className="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-colors resize-none"
-                />
+                <div className="relative">
+                  <div className="absolute top-3.5 left-0 flex items-center pl-4 pointer-events-none">
+                    <MessageSquare className="h-5 w-5 text-slate-400" />
+                  </div>
+                  <textarea
+                    placeholder="Tell us about your condition..."
+                    rows={4}
+                    className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-colors resize-none placeholder:text-slate-500"
+                  />
+                </div>
               </div>
               <button
                 type="submit"
-                className="w-full bg-blue-600 text-white py-3.5 px-6 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 font-semibold text-lg transition-all transform hover:scale-[1.02] flex items-center justify-center"
+                className="w-full bg-blue-600 text-white py-4 px-6 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 font-semibold text-lg transition-all transform hover:scale-[1.02] flex items-center justify-center shadow-lg hover:shadow-blue-300/50"
               >
                 <Calendar className="w-5 h-5 mr-3" />
                 Book Appointment
@@ -158,100 +196,154 @@ const ContactPage: React.FC = () => {
 
           {/* Info Section */}
           <motion.div
-            className="lg:col-span-2 flex flex-col gap-8"
-            variants={{
-              hidden: { opacity: 0, x: 50 },
-              visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
-            }}
+            className="lg:col-span-2 flex flex-col"
+            variants={itemVariants}
           >
-            <div className="bg-white p-8 rounded-2xl shadow-xl border border-slate-100">
-              <h3 className="text-2xl font-bold text-slate-900 mb-6">
-                Clinic Information
-              </h3>
-              <ul className="space-y-4">
-                <li className="flex items-start space-x-4 group">
-                  <Phone className="h-6 w-6 text-blue-600 mt-1 flex-shrink-0 group-hover:scale-110 transition-transform" />
-                  <div>
-                    <h4 className="font-semibold text-slate-800 mb-1">Phone</h4>
-                    <a
-                      href="tel:+61123456789"
-                      className="text-blue-600 hover:text-blue-800 transition-colors text-lg"
-                    >
-                      (03) 1234 5678
-                    </a>
-                  </div>
-                </li>
-                <li className="flex items-start space-x-4 pt-4 border-t border-slate-100 group">
-                  <Mail className="h-6 w-6 text-blue-600 mt-1 flex-shrink-0 group-hover:scale-110 transition-transform" />
-                  <div>
-                    <h4 className="font-semibold text-slate-800 mb-1">Email</h4>
-                    <a
-                      href="mailto:info@thephysiocrew.com.au"
-                      className="text-blue-600 hover:text-blue-800 transition-colors text-lg break-all"
-                    >
-                      info@thephysiocrew.com.au
-                    </a>
-                  </div>
-                </li>
-                <li className="flex items-start space-x-4 pt-4 border-t border-slate-100 group">
-                  <Clock className="h-6 w-6 text-blue-600 mt-1 flex-shrink-0 group-hover:scale-110 transition-transform" />
-                  <div>
-                    <h4 className="font-semibold text-slate-800 mb-1">
-                      Opening Hours
-                    </h4>
-                    <div className="space-y-1 text-slate-600">
-                      <p>Mon - Fri: 7:00 AM - 8:00 PM</p>
-                      <p>Saturday: 8:00 AM - 4:00 PM</p>
-                      <p>Sunday: Closed</p>
-                    </div>
-                  </div>
-                </li>
-              </ul>
+            {/* Opening Hours */}
+            <div className="bg-white p-8 rounded-2xl shadow-2xl shadow-slate-200/50 border border-slate-100 h-full max-h-fit">
+              <InfoItem icon={Clock} title="Opening Hours">
+                <div className="space-y-1 text-slate-600 mt-2">
+                  <p>Mon - Fri: 7:00 AM - 8:00 PM</p>
+                  <p>Saturday: 8:00 AM - 4:00 PM</p>
+                  <p>Sunday: Closed</p>
+                </div>
+              </InfoItem>
             </div>
+          </motion.div>
+        </motion.div>
 
-            <div className="bg-white p-8 rounded-2xl shadow-xl border border-slate-100">
-              <h3 className="text-2xl font-bold text-slate-900 mb-6">
-                Our Location
-              </h3>
-              <div className="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden mb-6">
+        {/* --- NEW LOCATIONS SECTION --- */}
+        <div className="mt-24 md:mt-32">
+          <div className="text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">
+              Our Clinic Locations
+            </h2>
+            <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
+              Find the clinic nearest to you. Both our locations are staffed by
+              expert physiotherapists ready to help.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 mt-12">
+            {/* Tullamarine Card */}
+            <motion.div
+              className="bg-white rounded-2xl shadow-2xl shadow-slate-200/50 border border-slate-100 overflow-hidden flex flex-col"
+              variants={itemVariants}
+            >
+              <div className="w-full h-64">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.83543450937!2d144.9537353159042!3d-37.81720997975179!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0x5045675218ce7e0!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sus!4v1664456742551!5m2!1sen!2sus"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3156.681134069505!2d144.87238471583945!3d-37.70278787977114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad6500bd6596163%3A0x86735515332f1737!2s1%2F191%20Melrose%20Dr%2C%20Tullamarine%20VIC%203043%2C%20Australia!5e0!3m2!1sen!2sin!4v1668243632948!5m2!1sen!2sin"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  className="w-full h-full"
-                />
+                ></iframe>
               </div>
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                <div className="flex items-start space-x-3">
-                  <MapPin className="h-8 w-8 text-blue-600 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-slate-800">
-                      The Physio Crew
-                    </h4>
-                    <p className="text-slate-600">
-                      123 Health Street, Melbourne VIC 3000
-                    </p>
-                  </div>
+              <div className="p-8 flex-grow">
+                <h3 className="text-2xl font-bold text-slate-900 mb-4">
+                  Tullamarine
+                </h3>
+                <div className="space-y-4 text-slate-600">
+                  <p className="flex items-start">
+                    <MapPin className="w-5 h-5 mr-3 mt-1 text-slate-400 flex-shrink-0" />
+                    1/191 Melrose Drive, Tullamarine 3043
+                  </p>
+                  <p className="flex items-center">
+                    <Phone className="w-5 h-5 mr-3 text-slate-400" />
+                    <a
+                      href="tel:+61391168691"
+                      className="text-blue-600 hover:underline"
+                    >
+                      03 9116 8691
+                    </a>
+                  </p>
+                  <p className="flex items-center">
+                    <Mail className="w-5 h-5 mr-3 text-slate-400" />
+                    <a
+                      href="mailto:admin@thephysiocrew.com.au"
+                      className="text-blue-600 hover:underline break-all"
+                    >
+                      admin@thephysiocrew.com.au
+                    </a>
+                  </p>
                 </div>
-                <a
-                  href="https://goo.gl/maps/xxxxx"
+              </div>
+              <div className="p-8 pt-0">
+                <Link
+                  href="https://www.google.com/maps?ll=-37.701648,144.881209&z=15&t=m&hl=en&gl=IN&mapclient=embed&q=Unit+1/191+Melrose+Dr+Tullamarine+VIC+3043+Australia"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-5 py-2.5 bg-slate-100 text-slate-700 font-semibold rounded-lg hover:bg-slate-200 transition-colors flex-shrink-0"
+                  className="inline-flex items-center justify-center w-full px-6 py-3 rounded-lg bg-slate-100 text-slate-800 font-semibold hover:bg-slate-200 transition-colors"
                 >
-                  Get Directions
-                  <ArrowRight className="h-4 w-4 ml-2" />
-                </a>
+                  Get Directions <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
               </div>
-            </div>
-          </motion.div>
-        </motion.div>
+            </motion.div>
+
+            {/* Carlton Card */}
+            <motion.div
+              className="bg-white rounded-2xl shadow-2xl shadow-slate-200/50 border border-slate-100 overflow-hidden flex flex-col"
+              variants={itemVariants}
+            >
+              <div className="w-full h-64">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.096951206103!2d144.9680323158416!3d-37.80918117975308!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642d6a5c18227%3A0x2aeb049e782e423!2s2%2F221%20Drummond%20St%2C%20Carlton%20VIC%203053%2C%20Australia!5e0!3m2!1sen!2sin!4v1668243734444!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+              <div className="p-8 flex-grow">
+                <h3 className="text-2xl font-bold text-slate-900 mb-4">
+                  Carlton
+                </h3>
+                <div className="space-y-4 text-slate-600">
+                  <p className="flex items-start">
+                    <MapPin className="w-5 h-5 mr-3 mt-1 text-slate-400 flex-shrink-0" />
+                    2/221 Drummond Street, Carlton 3053
+                  </p>
+                  <p className="flex items-center">
+                    <Phone className="w-5 h-5 mr-3 text-slate-400" />
+                    <a
+                      href="tel:+61391168693"
+                      className="text-blue-600 hover:underline"
+                    >
+                      03 9116 8693
+                    </a>
+                  </p>
+                  <p className="flex items-center">
+                    <Mail className="w-5 h-5 mr-3 text-slate-400" />
+                    <a
+                      href="mailto:carlton@thephysiocrew.com.au"
+                      className="text-blue-600 hover:underline break-all"
+                    >
+                      carlton@thephysiocrew.com.au
+                    </a>
+                  </p>
+                </div>
+              </div>
+              <div className="p-8 pt-0">
+                <Link
+                  href="https://www.google.com/maps/place/2%2F221+Drummond+St,+Carlton+VIC+3053,+Australia/@-37.801156,144.968024,15z/data=!4m6!3m5!1s0x6ad642d140a55555:0x83aa7bc56d863b4!8m2!3d-37.8011558!4d144.9680243!16s%2Fg%2F11w1kt6jb9?hl=en&entry=ttu&g_ep=EgoyMDI1MTAwNy4wIKXMDSoASAFQAw%3D%3D"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center w-full px-6 py-3 rounded-lg bg-slate-100 text-slate-800 font-semibold hover:bg-slate-200 transition-colors"
+                >
+                  Get Directions <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        </div>
       </div>
     </div>
+    <Footer />  
+    </>
   );
 };
 

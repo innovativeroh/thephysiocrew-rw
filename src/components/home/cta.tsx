@@ -71,7 +71,8 @@ const CtaSection = () => {
                 transition={{ duration: 0.2 }}
               >
                 <Link
-                  href={"#"}
+                  href={"https://the-physio-crew-tullamarine-pty-ltd.au3.cliniko.com/bookings"}
+                target="_blank"
                   className="inline-flex items-center alan-semibold text-lg mt-5 gap-4 text-blue-950 bg-white py-3 px-6 rounded-2xl"
                 >
                   Book Now <ArrowRight />

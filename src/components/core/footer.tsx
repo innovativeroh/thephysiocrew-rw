@@ -5,13 +5,13 @@ import type { FC } from "react";
 import { FaFacebookF, FaInstagram, FaPhone, FaEnvelope } from "react-icons/fa";
 import Logo from "../../../public/logo.png";
 import { motion } from "framer-motion"; // Import motion
+import Link from "next/link";
 
 const footerNav = [
-  { name: "Locations", href: "/#" },
-  { name: "About Us", href: "/#" },
-  { name: "Our Services", href: "/#" },
-  { name: "News & Research", href: "/#" },
-  { name: "Contact Us", href: "/#" },
+  { name: "About Us", href: "/about-us" },
+  { name: "Our Services", href: "/#services" },
+  { name: "News & Research", href: "/blogs" },
+  { name: "Contact Us", href: "/contact-us" },
 ];
 
 const locations = [
@@ -108,14 +108,51 @@ const Footer: FC = () => {
             <h3 className="alan-medium text-gray-900 text-base mb-4">
               Connect With Us
             </h3>
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <FaPhone className="w-4 h-4 text-gray-500" />
-                <span className="text-sm alan-regular">Call Us</span>
+            <div className="space-y-4">
+              {/* Tullamarine Contact */}
+              <div>
+                <h4 className="text-sm alan-medium text-gray-800 mb-2">
+                  Tullamarine
+                </h4>
+                <div className="space-y-2">
+                  <a
+                    href="tel:0391168691"
+                    className="flex items-center space-x-3 text-sm alan-regular text-gray-600 hover:text-gray-900 transition-colors"
+                  >
+                    <FaPhone className="w-4 h-4 text-gray-500" />
+                    <span>03 9116 8691</span>
+                  </a>
+                  <a
+                    href="mailto:admin@thephysiocrew.com.au"
+                    className="flex items-center space-x-3 text-sm alan-regular text-gray-600 hover:text-gray-900 transition-colors"
+                  >
+                    <FaEnvelope className="w-4 h-4 text-gray-500" />
+                    <span>admin@thephysiocrew.com.au</span>
+                  </a>
+                </div>
               </div>
-              <div className="flex items-center space-x-3">
-                <FaEnvelope className="w-4 h-4 text-gray-500" />
-                <span className="text-sm alan-regular">Email Us</span>
+
+              {/* Carlton Contact */}
+              <div>
+                <h4 className="text-sm alan-medium text-gray-800 mb-2">
+                  Carlton
+                </h4>
+                <div className="space-y-2">
+                  <a
+                    href="tel:0391168693"
+                    className="flex items-center space-x-3 text-sm alan-regular text-gray-600 hover:text-gray-900 transition-colors"
+                  >
+                    <FaPhone className="w-4 h-4 text-gray-500" />
+                    <span>03 9116 8693</span>
+                  </a>
+                  <a
+                    href="mailto:carlton@thephysiocrew.com.au"
+                    className="flex items-center space-x-3 text-sm alan-regular text-gray-600 hover:text-gray-900 transition-colors"
+                  >
+                    <FaEnvelope className="w-4 h-4 text-gray-500" />
+                    <span>carlton@thephysiocrew.com.au</span>
+                  </a>
+                </div>
               </div>
             </div>
 
@@ -125,20 +162,20 @@ const Footer: FC = () => {
                 Follow Us
               </h4>
               <div className="flex space-x-4">
-                <a
-                  href="#"
+                <Link
+                  href="https://www.facebook.com/thephysiocrewofficial"
                   aria-label="Facebook"
                   className="hover:text-gray-900 transition-colors"
                 >
                   <FaFacebookF className="w-5 h-5" />
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  href="https://www.instagram.com/thephysiocrewofficial/"
                   aria-label="Instagram"
                   className="hover:text-gray-900 transition-colors"
                 >
                   <FaInstagram className="w-5 h-5" />
-                </a>
+                </Link>
               </div>
             </div>
           </motion.div>
@@ -164,15 +201,15 @@ const Footer: FC = () => {
             </div>
 
             <div className="mt-4 md:mt-0 text-sm alan-regular text-gray-500">
-              <a
-                href="#"
+              <Link
+                href="/privacy-policy"
                 className="hover:text-gray-900 transition-colors mr-4"
               >
                 Privacy Policy
-              </a>
-              <a href="#" className="hover:text-gray-900 transition-colors">
+              </Link>
+              <Link href="/terms-of-service" className="hover:text-gray-900 transition-colors">
                 Terms of Service
-              </a>
+              </Link>
             </div>
           </div>
         </motion.div>

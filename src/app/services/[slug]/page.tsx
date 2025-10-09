@@ -6,6 +6,8 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import { groq } from "next-sanity";
 import { client } from "../../../../sanity/lib/client";
+import Link from "next/link";
+import Footer from "@/components/core/footer";
 
 // Define animation variants
 const containerVariants: Variants = {
@@ -124,6 +126,7 @@ export default function ServicePage() {
   }
 
   return (
+    <>
     <section className="min-h-screen font-sans bg-blue-50/50">
       {/* 1. Hero Section */}
       <motion.div
@@ -153,27 +156,35 @@ export default function ServicePage() {
                   {service.subDescription}
                 </p>
               )}
-              <motion.button
-                className="inline-flex items-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-full shadow-xl hover:shadow-blue-500/20 transition-shadow duration-300"
-                variants={hoverVariants}
-                whileHover="hover"
-                whileTap={{ scale: 0.98 }}
+              <Link
+                href={
+                  "https://the-physio-crew-tullamarine-pty-ltd.au3.cliniko.com/bookings"
+                }
+                target="_blank"
+                className="inline-flex"
               >
-                Book Your Assessment
-                <svg
-                  className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+                <motion.button
+                  className="inline-flex items-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-full shadow-xl hover:shadow-blue-500/20 transition-shadow duration-300"
+                  variants={hoverVariants}
+                  whileHover="hover"
+                  whileTap={{ scale: 0.98 }}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
-              </motion.button>
+                  Book Your Assessment
+                  <svg
+                    className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </motion.button>
+              </Link>
             </motion.div>
           </div>
         </div>
@@ -201,14 +212,6 @@ export default function ServicePage() {
                 {service.description}
               </p>
             </div>
-            <motion.button
-              className="px-8 py-4 bg-blue-600 text-white font-semibold rounded-full shadow-lg hover:shadow-blue-600/50 transition-all duration-300"
-              variants={hoverVariants}
-              whileHover="hover"
-              whileTap={{ scale: 0.98 }}
-            >
-              Learn More
-            </motion.button>
           </motion.div>
 
           {/* Right Column: Key Points */}
@@ -244,5 +247,7 @@ export default function ServicePage() {
         </div>
       </motion.div>
     </section>
+    <Footer />
+    </>
   );
 }

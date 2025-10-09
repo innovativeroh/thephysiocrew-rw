@@ -1,20 +1,43 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Team from "../../../public/Images/team.jpg";
-import { StarIcon, Target, Handshake, ShieldCheck, HeartHandshake, Award } from "lucide-react";
+import {
+  StarIcon,
+  Target,
+  Handshake,
+  ShieldCheck,
+  HeartHandshake,
+  Award,
+} from "lucide-react";
 import { motion } from "framer-motion";
 import CoveredSection from "@/components/home/covered";
 import TeamsSections from "@/components/home/team";
 import Footer from "@/components/core/footer";
 import AdministrationSection from "@/components/home/administration";
+import { client } from "../../../sanity/lib/client";
 
 const AboutUsSection = () => {
+  const [isImage, setIsImage] = useState<any>();
+
+  useEffect(() => {
+    const fetchTeamImage = async () => {
+      setIsImage(null);
+      const query = `*[_type == "team-Image"][0] {
+      _id,
+      "imageUrl": image.asset->url,
+    }`;
+      const data = await client.fetch(query);
+      setIsImage(await data.imageUrl);
+    };
+    fetchTeamImage();
+  }, []);
+
   // Stats relevant to The Physio Crew
   const statsData = [
     {
-      value: "95%",
+      value: "100%",
       label: "Patient satisfaction rate, reflecting our dedication to care.",
     },
     {
@@ -41,7 +64,8 @@ const AboutUsSection = () => {
     {
       name: "Integrity",
       icon: ShieldCheck,
-      description: "Upholding the highest standards of professionalism and ethics.",
+      description:
+        "Upholding the highest standards of professionalism and ethics.",
     },
     {
       name: "Compassion",
@@ -51,14 +75,19 @@ const AboutUsSection = () => {
     {
       name: "Excellence",
       icon: Award,
-      description: "Striving for the best outcomes through continuous learning.",
+      description:
+        "Striving for the best outcomes through continuous learning.",
     },
   ];
 
   // Reusable variant for items that fade in and slide up
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" as const },
+    },
   };
 
   // Reusable variant for containers that stagger their children's animations
@@ -71,7 +100,11 @@ const AboutUsSection = () => {
   const itemVariant = {
     hidden: { opacity: 0, y: 20 },
     // FIX APPLIED HERE: Added 'as const' to the ease property
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" as const },
+    },
   };
 
   return (
@@ -102,8 +135,8 @@ const AboutUsSection = () => {
             className="w-full flex-center h-auto lg:h-[600px] rounded-2xl overflow-hidden"
             variants={fadeIn}
           >
-            <Image
-              src={Team}
+            <img
+              src={isImage}
               alt="The Physio Crew Team"
               width={1920}
               height={1080}
@@ -149,20 +182,19 @@ const AboutUsSection = () => {
                     ))}
                   </div>
                   <p className="text-sm leading-6 text-gray-900">
-                    <span className="font-semibold">4.9/5</span> Patient Rating
+                    <span className="font-semibold">5/5</span> Patient Rating
                   </p>
                 </div>
               </div>
             </motion.div>
 
             {/* Purpose and Core Values Section */}
-            <motion.div 
-              className="mt-16 sm:mt-24 py-16 sm:py-20 rounded-2xl" 
+            <motion.div
+              className="mt-16 sm:mt-24 py-16 sm:py-20 rounded-2xl"
               variants={fadeIn}
             >
               <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-                  
                   {/* Our Purpose Card */}
                   <div className="space-y-6">
                     <div className="flex items-center gap-4">
@@ -174,15 +206,17 @@ const AboutUsSection = () => {
                       </h3>
                     </div>
                     <p className="text-lg leading-8 text-gray-700">
-                      To display best practice by providing a bespoke care plan addressing patient goals through continued commitment to professional development.
+                      To display best practice by providing a bespoke care plan
+                      addressing patient goals through continued commitment to
+                      professional development.
                     </p>
                   </div>
 
                   {/* Our Core Values Grid */}
                   <div className="space-y-6">
-                     <h3 className="text-3xl lg:text-4xl font-bold tracking-tight text-gray-900">
-                        Our Core Values
-                      </h3>
+                    <h3 className="text-3xl lg:text-4xl font-bold tracking-tight text-gray-900">
+                      Our Core Values
+                    </h3>
                     <motion.ul
                       className="grid grid-cols-1 sm:grid-cols-2 gap-6"
                       variants={staggerContainer}
@@ -191,8 +225,8 @@ const AboutUsSection = () => {
                       viewport={{ once: true, amount: 0.3 }}
                     >
                       {coreValues.map((value) => (
-                        <motion.li 
-                          key={value.name} 
+                        <motion.li
+                          key={value.name}
                           variants={itemVariant}
                           className="p-6 rounded-xl shadow-sm transition-all hover:shadow-md hover:-translate-y-1"
                         >
@@ -200,7 +234,9 @@ const AboutUsSection = () => {
                             <div className="bg-blue-100 text-blue-600 p-2.5 rounded-full flex-shrink-0">
                               <value.icon className="w-6 h-6" strokeWidth={2} />
                             </div>
-                            <h4 className="text-xl font-semibold text-gray-900">{value.name}</h4>
+                            <h4 className="text-xl font-semibold text-gray-900">
+                              {value.name}
+                            </h4>
                           </div>
                           <p className="mt-3 text-base text-gray-600">
                             {value.description}
@@ -238,7 +274,7 @@ const AboutUsSection = () => {
         </motion.div>
       </main>
       <TeamsSections />
-      <AdministrationSection /> 
+      <AdministrationSection />
       <Footer />
     </section>
   );

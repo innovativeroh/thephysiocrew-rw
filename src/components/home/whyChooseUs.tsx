@@ -69,7 +69,7 @@ const WhyChooseUs = () => {
         height={1080}
         className="absolute top-0 left-0 w-full opacity-10 z-[-1]"
       />
-      <main className="container mx-auto">
+      <main>
         <div className="px-5 pt-12 md:pt-20 w-full flex-center flex-col gap-16">
           <div className="flex-[1] w-full flex-center text-center">
             {/* Animate the heading to fade in and slide down */}
@@ -86,7 +86,7 @@ const WhyChooseUs = () => {
 
           {/* Motion container for the grid */}
           <motion.div
-            className="flex-[1] w-full grid grid-cols-1 gap-5 md:grid-cols-4 md:place-items-start place-items-center place-content-center max-w-[1380px] mx-auto"
+            className="flex-[1] w-full grid grid-cols-1 gap-5 md:grid-cols-4 md:place-items-start place-items-center place-content-center max-w-fit mx-auto"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -99,7 +99,7 @@ const WhyChooseUs = () => {
                 variants={cardVariants}
                 // Added a hover effect for better interactivity
                 whileHover={{ scale: 1.03, y: -5 }}
-                className={`flex w-full max-w-xs flex-col items-start justify-start rounded-xl p-6 shadow-md transition-colors duration-300 ease-in-out sm:p-8
+                className={`flex w-full max-w-[400px] flex-col items-start justify-start rounded-xl p-6 shadow-md transition-colors duration-300 ease-in-out sm:p-8
                   ${
                     feature.highlighted
                       ? "HeroBackground text-white md:translate-y-20"
@@ -108,17 +108,17 @@ const WhyChooseUs = () => {
                 style={{ minHeight: "180px" }}
               >
                 <div
-                  className={`mb-4 flex h-12 w-12 items-center justify-center rounded-full
+                  className={`mb-4 flex h-15 w-15 items-center justify-center rounded-full
                     ${
                       feature.highlighted
-                        ? "bg-white text-[#0F62BB]"
-                        : "bg-gray-100 text-gray-700"
+                        ? "bg-white text-orange-500"
+                        : "bg-gray-100 text-orange-500"
                     }`}
                 >
-                  <feature.icon className="h-6 w-6" strokeWidth={1.5} />
+                  <feature.icon className="h-8 w-8" strokeWidth={1.5} />
                 </div>
                 <h3
-                  className={`mb-2 text-base alan-bold
+                  className={`mb-2 text-xl alan-bold
                     ${feature.highlighted ? "text-white" : "text-gray-900"}`}
                 >
                   {feature.title}
