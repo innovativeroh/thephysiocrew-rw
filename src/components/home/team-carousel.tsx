@@ -35,10 +35,10 @@ export const TeamCarousel = ({ teamMembers, }: { teamMembers: Team[] }) => {
               />
               <div className="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-black/80 to-transparent">
                 <div className="text-white">
-                  <h1 className="text-2xl alan-medium">
+                  <h1 className="text-2xl font-josefin-semibold">
                     {team.name} {team.role && `- ${team.role}`}
                   </h1>
-                  <p className="text-sm mont-regular">{team.education}</p>
+                  <p className="text-sm font-brandon-medium">{team.education}</p>
                 </div>
               </div>
             </div>
@@ -113,20 +113,20 @@ const Modal = ({ member, onClose }: { member: Team; onClose: () => void }) => {
 
         <div className="text-center md:text-left">
           {member.role && (
-            <p className="text-sm mont-semibold text-sky-600 mb-1">
+            <p className="text-sm font-brandon-medium text-sky-600 mb-1">
               {member.role}
             </p>
           )}
           <h2
             id="member-name"
-            className="text-2xl md:text-3xl alan-semibold text-slate-900"
+            className="text-2xl md:text-3xl font-josefin-semibold text-slate-900"
           >
             {member.name}
           </h2>
-          <p className="text-sm text-slate-500 mt-2 mb-3 mont-medium">
+          <p className="text-sm text-slate-500 mt-2 mb-3 font-brandon-medium">
             {member.education}
           </p>
-          <p className="text-base text-slate-700 mont-medium">
+          <p className="text-base text-slate-700 font-brandon">
             {member.description}
           </p>
         </div>

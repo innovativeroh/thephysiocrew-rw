@@ -14,7 +14,7 @@ const AboutUsSection = () => {
       <div className="relative z-10 flex flex-col-reverse lg:flex-row min-h-screen">
         {/* Left Half - Text Content */}
         <div className="w-full lg:w-1/2 flex flex-col justify-center p-8 md:p-16 lg:p-24 xl:p-32">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl alan-semibold font-bold leading-tight text-gray-800 max-w-[700px]">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl leading-tight text-gray-800 max-w-[700px]">
             Our Story the Journey
             That&apos;s Shaped <span className="text-[#3B82F6]">
               Patient

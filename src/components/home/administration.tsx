@@ -55,7 +55,7 @@ const AdministrationSection = () => {
   return (
     <section>
       <main>
-        <div className="px-5 pt-32 pb-10 w-full flex-center flex-col gap-16">
+        <div className="px-5 pt-32 pb-10 w-full flex-center flex-col gap-10">
           <div className="w-full flex flex-col md:flex-row items-start justify-between gap-3 container mx-auto">
             {/* --- ANIMATION ADDED --- */}
             <motion.h1
@@ -63,7 +63,7 @@ const AdministrationSection = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="text-3xl md:text-4xl lg:text-5xl text-left alan-semibold"
+              className="text-3xl md:text-4xl lg:text-5xl text-left font-josefin-semibold"
             >
               Administration
             </motion.h1>
@@ -73,7 +73,7 @@ const AdministrationSection = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="text-sm max-w-[500px] text-gray-900 mont-medium"
+              className="text-base max-w-[600px] text-gray-900 font-brandon-medium"
             >
               Our crew is more than administrators—we’re relationship builders,
               seamless supporters, and your welcoming allies. Together, we blend
@@ -122,10 +122,10 @@ export const TeamCarousel = ({ teamMembers, }: { teamMembers: Team[] }) => {
               />
               <div className="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-black/80 to-transparent">
                 <div className="text-white">
-                  <h1 className="text-2xl alan-medium">
+                  <h1 className="text-2xl font-josefin-semibold">
                     {team.name} {team.role && `- ${team.role}`}
                   </h1>
-                  <p className="text-sm mont-regular">{team.education}</p>
+                  <p className="text-sm font-brandon-medium">{team.education}</p>
                 </div>
               </div>
             </div>
@@ -200,20 +200,20 @@ const Modal = ({ member, onClose }: { member: Team; onClose: () => void }) => {
 
         <div className="text-center md:text-left">
           {member.role && (
-            <p className="text-sm mont-semibold text-sky-600 mb-1">
+            <p className="text-sm font-josefin-semibold text-sky-600 mb-1">
               {member.role}
             </p>
           )}
           <h2
             id="member-name"
-            className="text-2xl md:text-3xl alan-semibold text-slate-900"
+            className="text-2xl md:text-3xl font-josefin-semibold text-slate-900"
           >
             {member.name}
           </h2>
-          <p className="text-sm text-slate-500 mt-2 mb-3 mont-medium">
+          <p className="text-sm text-slate-500 mt-2 mb-3 font-brandon-medium">
             {member.education}
           </p>
-          <p className="text-base text-slate-700 mont-medium">
+          <p className="text-base text-slate-700 font-brandon-medium">
             {member.description}
           </p>
         </div>

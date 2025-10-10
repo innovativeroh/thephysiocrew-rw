@@ -78,13 +78,13 @@ const ServicesClient: React.FC<ServicesClientProps> = ({ services }) => {
         >
           <div className="w-full flex flex-col md:flex-row items-start justify-between gap-4">
             <motion.h1
-              className="text-3xl md:text-4xl lg:text-5xl text-black alan-semibold max-w-[500px]"
+              className="text-3xl md:text-4xl lg:text-5xl text-black font-josefin-semibold max-w-[500px]"
               variants={textVariants}
             >
               Quality Service You Can Get
             </motion.h1>
             <motion.p
-              className="text-lg max-w-[500px] text-gray-900 mont-medium"
+              className="text-2xl max-w-[500px] text-gray-900 font-brandon-medium"
               variants={textVariants}
             >
               We provide a wide range of health services. Covering all of your
@@ -111,11 +111,11 @@ const ServicesClient: React.FC<ServicesClientProps> = ({ services }) => {
                       style={{ backgroundColor: service.color }}
                     />
                     <div className="relative z-10 h-full w-full p-7 flex flex-col justify-between">
-                      <h1 className="text-2xl text-white alan-medium">
+                      <h1 className="text-2xl text-white font-josefin-semibold">
                         {service.title}
                       </h1>
                       <div className="relative h-[120px] overflow-hidden">
-                        <p className="absolute top-0 text-sm mont-medium text-white transition-all duration-500 ease-in-out opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0">
+                        <p className="absolute top-0 text-lg font-brandon-medium text-white transition-all duration-500 ease-in-out opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0">
                           {service.description}
                         </p>
                         <div className="absolute bottom-0 bg-white rounded-full p-3 shadow-lg max-w-fit transition-all duration-500 ease-in-out opacity-100 translate-y-0 group-hover:opacity-0 group-hover:translate-y-8">

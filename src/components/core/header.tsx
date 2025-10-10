@@ -106,13 +106,20 @@ const Header = () => {
             <NavigationMenuList>
               <NavigationMenuItem>
                 <Link href="/" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  <NavigationMenuLink
+                    className={cn(
+                      navigationMenuTriggerStyle(),
+                      "font-brandon-medium"
+                    )}
+                  >
                     Home
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Services</NavigationMenuTrigger>
+                <NavigationMenuTrigger className="font-brandon-medium">
+                  Services
+                </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                     {services.map((service) => (
@@ -129,21 +136,36 @@ const Header = () => {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link href="/about-us" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  <NavigationMenuLink
+                    className={cn(
+                      navigationMenuTriggerStyle(),
+                      "font-brandon-medium"
+                    )}
+                  >
                     About Us
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link href="/blogs" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  <NavigationMenuLink
+                    className={cn(
+                      navigationMenuTriggerStyle(),
+                      "font-brandon-medium"
+                    )}
+                  >
                     News & Research
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link href="/contact-us" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  <NavigationMenuLink
+                    className={cn(
+                      navigationMenuTriggerStyle(),
+                      "font-brandon-medium"
+                    )}
+                  >
                     Contact Us
                   </NavigationMenuLink>
                 </Link>
@@ -165,7 +187,7 @@ const Header = () => {
           <Link
             href="https://the-physio-crew-tullamarine-pty-ltd.au3.cliniko.com/bookings"
             target="_blank"
-            className="mont-semibold flex items-center gap-2 whitespace-nowrap rounded-full bg-blue-950 py-3 px-5 text-xs text-white transition hover:bg-blue-900 sm:px-6 sm:text-sm"
+            className="font-brandon-medium flex items-center gap-2 whitespace-nowrap rounded-full bg-blue-950 py-3 px-5 text-xs text-white transition hover:bg-blue-900 sm:px-6 sm:text-sm"
           >
             Book Now <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4" />
           </Link>
@@ -180,7 +202,7 @@ const Header = () => {
             <Link
               href="/"
               onClick={closeMobileMenu}
-              className="block rounded-md px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-100"
+              className="font-brandon-medium block rounded-md px-4 py-3 text-base text-gray-700 hover:bg-gray-100"
             >
               Home
             </Link>
@@ -189,7 +211,7 @@ const Header = () => {
             <div>
               <button
                 onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-                className="flex w-full items-center justify-between rounded-md px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-100"
+                className="font-brandon-medium flex w-full items-center justify-between rounded-md px-4 py-3 text-base text-gray-700 hover:bg-gray-100"
               >
                 Services
                 <ChevronDown
@@ -206,7 +228,7 @@ const Header = () => {
                       key={service._id}
                       href={`/services/${service.slug}`}
                       onClick={closeMobileMenu}
-                      className="block rounded-md px-4 py-2 text-sm text-gray-600 hover:bg-gray-100"
+                      className="font-brandon block rounded-md px-4 py-2 text-sm text-gray-600 hover:bg-gray-100"
                     >
                       {service.title}
                     </Link>
@@ -218,21 +240,21 @@ const Header = () => {
             <Link
               href="/about-us"
               onClick={closeMobileMenu}
-              className="block rounded-md px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-100"
+              className="font-brandon-medium block rounded-md px-4 py-3 text-base text-gray-700 hover:bg-gray-100"
             >
               About Us
             </Link>
             <Link
               href="/blogs"
               onClick={closeMobileMenu}
-              className="block rounded-md px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-100"
+              className="font-brandon-medium block rounded-md px-4 py-3 text-base text-gray-700 hover:bg-gray-100"
             >
               News & Research
             </Link>
             <Link
               href="/contact-us"
               onClick={closeMobileMenu}
-              className="block rounded-md px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-100"
+              className="font-brandon-medium block rounded-md px-4 py-3 text-base text-gray-700 hover:bg-gray-100"
             >
               Contact Us
             </Link>
@@ -261,7 +283,7 @@ const Header = () => {
   );
 };
 
-// Custom ListItem component for the NavigationMenu (unchanged)
+// Custom ListItem component for the NavigationMenu (updated with fonts)
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
   React.ComponentPropsWithoutRef<"a">
@@ -277,10 +299,10 @@ const ListItem = React.forwardRef<
           )}
           {...props}
         >
-          <div className="text-sm font-medium leading-none text-blue-950">
+          <div className="font-josefin-semibold text-sm leading-none text-blue-950">
             {title}
           </div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          <p className="font-brandon line-clamp-2 text-sm leading-snug text-muted-foreground">
             {children}
           </p>
         </a>

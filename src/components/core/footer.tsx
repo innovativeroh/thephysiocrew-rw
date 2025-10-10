@@ -64,7 +64,7 @@ const Footer: FC = () => {
               height={80}
               className="h-20 w-auto mb-4"
             />
-            <p className="text-sm alan-regular text-gray-600 leading-relaxed">
+            <p className="text-sm font-brandon-medium text-gray-600 leading-relaxed">
               A clinic & online space committed to treat every individual with
               honesty, respect, kindness & provide exceptional physiotherapy
               service to our community.
@@ -73,7 +73,7 @@ const Footer: FC = () => {
 
           {/* Navigation Links */}
           <motion.div className="lg:col-span-1" variants={columnVariants}>
-            <h3 className="alan-medium text-gray-900 text-base mb-4">
+            <h3 className="font-josefin-semibold text-gray-900 text-base mb-4">
               Quick Links
             </h3>
             <nav className="space-y-3">
@@ -81,7 +81,7 @@ const Footer: FC = () => {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="block text-sm alan-regular hover:text-gray-900 transition-colors"
+                  className="block text-base font-brandon hover:text-gray-900 transition-colors"
                 >
                   {link.name}
                 </a>
@@ -91,12 +91,12 @@ const Footer: FC = () => {
 
           {/* Find Us At - Locations */}
           <motion.div className="lg:col-span-1" variants={columnVariants}>
-            <h3 className="alan-medium text-gray-900 text-base mb-4">
+            <h3 className="font-josefin-semibold text-gray-900 text-base mb-4">
               Find Us At
             </h3>
             <div className="space-y-3">
               {locations.map((location, index) => (
-                <div key={index} className="text-sm alan-regular text-gray-600">
+                <div key={index} className="text-base font-brandon text-gray-600">
                   <p>{location.address}</p>
                 </div>
               ))}
@@ -105,60 +105,60 @@ const Footer: FC = () => {
 
           {/* Contact & Social */}
           <motion.div className="lg:col-span-1" variants={columnVariants}>
-            <h3 className="alan-medium text-gray-900 text-base mb-4">
+            <h3 className="font-josefin-semibold text-gray-900 text-base mb-4">
               Connect With Us
             </h3>
             <div className="space-y-4">
               {/* Tullamarine Contact */}
               <div>
-                <h4 className="text-sm alan-medium text-gray-800 mb-2">
+                <h4 className="text-sm font-josefin-semibold text-gray-800 mb-2">
                   Tullamarine
                 </h4>
                 <div className="space-y-2">
-                  <a
+                  <Link
                     href="tel:0391168691"
-                    className="flex items-center space-x-3 text-sm alan-regular text-gray-600 hover:text-gray-900 transition-colors"
+                    className="flex items-center space-x-3 text-base font-brandon text-gray-600 hover:text-gray-900 transition-colors"
                   >
                     <FaPhone className="w-4 h-4 text-gray-500" />
                     <span>03 9116 8691</span>
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="mailto:admin@thephysiocrew.com.au"
-                    className="flex items-center space-x-3 text-sm alan-regular text-gray-600 hover:text-gray-900 transition-colors"
+                    className="flex items-center space-x-3 ttext-base font-brandon text-gray-600 hover:text-gray-900 transition-colors"
                   >
                     <FaEnvelope className="w-4 h-4 text-gray-500" />
                     <span>admin@thephysiocrew.com.au</span>
-                  </a>
+                  </Link>
                 </div>
               </div>
 
               {/* Carlton Contact */}
               <div>
-                <h4 className="text-sm alan-medium text-gray-800 mb-2">
+                <h4 className="text-sm font-josefin-semibold text-gray-800 mb-2">
                   Carlton
                 </h4>
                 <div className="space-y-2">
-                  <a
+                  <Link
                     href="tel:0391168693"
-                    className="flex items-center space-x-3 text-sm alan-regular text-gray-600 hover:text-gray-900 transition-colors"
+                    className="flex items-center space-x-3 text-base font-brandon text-gray-600 hover:text-gray-900 transition-colors"
                   >
                     <FaPhone className="w-4 h-4 text-gray-500" />
                     <span>03 9116 8693</span>
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="mailto:carlton@thephysiocrew.com.au"
-                    className="flex items-center space-x-3 text-sm alan-regular text-gray-600 hover:text-gray-900 transition-colors"
+                    className="flex items-center space-x-3 text-base font-brandon text-gray-600 hover:text-gray-900 transition-colors"
                   >
                     <FaEnvelope className="w-4 h-4 text-gray-500" />
                     <span>carlton@thephysiocrew.com.au</span>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
 
             {/* Social Media Links */}
             <div className="mt-6">
-              <h4 className="alan-medium text-gray-900 text-sm mb-3">
+              <h4 className="font-josefin-semibold text-gray-900 text-sm mb-3">
                 Follow Us
               </h4>
               <div className="flex space-x-4">
@@ -190,7 +190,7 @@ const Footer: FC = () => {
           transition={{ duration: 0.5, delay: 0.5 }} // Delay ensures it animates after the columns
         >
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-sm alan-regular text-gray-500 text-center md:text-left">
+            <div className="text-sm font-josefin-semibold text-gray-500 text-center md:text-left">
               <p>
                 © {new Date().getFullYear()} The Physio Crew. All rights
                 reserved.
@@ -200,7 +200,7 @@ const Footer: FC = () => {
               </p>
             </div>
 
-            <div className="mt-4 md:mt-0 text-sm alan-regular text-gray-500">
+            <div className="mt-4 md:mt-0 text-sm font-brandon-medium text-gray-500">
               <Link
                 href="/privacy-policy"
                 className="hover:text-gray-900 transition-colors mr-4"

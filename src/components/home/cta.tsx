@@ -48,7 +48,7 @@ const CtaSection = () => {
           >
             <motion.h1
               variants={itemVariants}
-              className="text-3xl md:text-4xl lg:text-7xl text-white alan-semibold max-w-[1000px]"
+              className="text-3xl md:text-4xl lg:text-6xl text-white font-josefin-semibold max-w-[1000px]"
             >
               Ready to Take Your Recovery to the Next Level with Expert
               Physiotherapy
@@ -56,7 +56,7 @@ const CtaSection = () => {
 
             <motion.p
               variants={itemVariants}
-              className="text-sm md:text-lg text-neutral-100 max-w-[700px] mont-medium mt-3"
+              className="text-lg md:text-lg text-neutral-100 max-w-[700px] font-brandon-medium mt-3"
             >
               With years of hands-on experience in sports injuries,
               post-operative rehab, and musculoskeletal care, we empower you to
@@ -73,7 +73,7 @@ const CtaSection = () => {
                 <Link
                   href={"https://the-physio-crew-tullamarine-pty-ltd.au3.cliniko.com/bookings"}
                 target="_blank"
-                  className="inline-flex items-center alan-semibold text-lg mt-5 gap-4 text-blue-950 bg-white py-3 px-6 rounded-2xl"
+                  className="inline-flex items-center font-josefin-semibold text-lg mt-5 gap-4 text-blue-950 bg-white py-3 px-6 rounded-2xl"
                 >
                   Book Now <ArrowRight />
                 </Link>

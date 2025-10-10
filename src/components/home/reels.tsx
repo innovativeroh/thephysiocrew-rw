@@ -55,13 +55,13 @@ const ReelsSection = () => {
           >
             <motion.h1
               variants={headerItemVariants}
-              className="text-3xl md:text-4xl lg:text-5xl text-left alan-semibold"
+              className="text-3xl md:text-4xl lg:text-5xl text-left font-josefin-semibold"
             >
               Our Reels
             </motion.h1>
             <motion.p
               variants={headerItemVariants}
-              className="text-sm max-w-[600px] text-gray-900 mont-medium text-center"
+              className="text-lg max-w-[600px] text-gray-900 font-brandon-medium text-center"
             >
               Meet The Physio Crew in action—behind-the-scenes moments, expert
               tips, and our passion for movement in quick, engaging videos.

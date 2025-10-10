@@ -75,13 +75,13 @@ const ContactPage: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-4 tracking-tight">
+              <h1 className="text-4xl md:text-6xl font-josefin-semibold text-slate-900 mb-4 tracking-tight">
                 Get in Touch
               </h1>
-              <h2 className="text-xl md:text-2xl font-medium text-blue-600 mb-6">
+              <h2 className="text-xl md:text-2xl font-brandon text-blue-600 mb-6 font-brandon-medium">
                 Your Path to Recovery Starts Here
               </h2>
-              <p className="text-slate-600 text-lg max-w-3xl mx-auto mb-10">
+              <p className="text-slate-600 text-lg max-w-3xl mx-auto mb-10 font-brandon-medium">
                 We're here to help you on your journey to better health. Contact
                 us to schedule an appointment or ask any questions you may have.
                 Our team is ready to assist you.
@@ -89,14 +89,14 @@ const ContactPage: React.FC = () => {
               <div className="flex flex-col sm:flex-row justify-center gap-4">
                 <a
                   href="#locations"
-                  className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-blue-600 text-white font-semibold hover:bg-blue-700 shadow-lg hover:shadow-blue-300/50 transition-all transform hover:-translate-y-1"
+                  className="inline-flex items-center justify-center px-8 py-3 font-josefin-semibold rounded-full bg-blue-600 text-white font-semibold hover:bg-blue-700 shadow-lg hover:shadow-blue-300/50 transition-all transform hover:-translate-y-1"
                 >
                   <MapPin className="w-5 h-5 mr-2" />
                   View Our Clinics
                 </a>
                 <Link
                   href="#booking-form"
-                  className="inline-flex items-center justify-center px-8 py-3 rounded-full border-2 border-slate-300 bg-white text-slate-700 font-semibold hover:bg-slate-100 hover:border-slate-400 transition-all transform hover:-translate-y-1"
+                  className="inline-flex items-center justify-center px-8 py-3 font-josefin-semibold rounded-full border-2 border-slate-300 bg-white text-slate-700 font-semibold hover:bg-slate-100 hover:border-slate-400 transition-all transform hover:-translate-y-1"
                 >
                   <Calendar className="w-5 h-5 mr-2" />
                   Book Appointment
@@ -115,10 +115,10 @@ const ContactPage: React.FC = () => {
             viewport={{ once: true, amount: 0.3 }}
             variants={itemVariants}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight font-brandon-medium">
               Our Clinic Locations
             </h2>
-            <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
+            <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto font-brandon-medium">
               Find the clinic nearest to you. Both our locations are staffed by
               expert physiotherapists ready to help.
             </p>
@@ -149,15 +149,15 @@ const ContactPage: React.FC = () => {
                 ></iframe>
               </div>
               <div className="p-8 flex-grow">
-                <h3 className="text-2xl font-bold text-slate-900 mb-4">
+                <h3 className="text-2xl font-josefin-semibold text-slate-900 mb-4">
                   Tullamarine
                 </h3>
                 <div className="space-y-4 text-slate-600">
-                  <p className="flex items-start">
+                  <p className="flex items-start font-brandon-medium">
                     <MapPin className="w-5 h-5 mr-3 mt-1 text-slate-400 flex-shrink-0" />
                     1/191 Melrose Drive, Tullamarine 3043
                   </p>
-                  <p className="flex items-center">
+                  <p className="flex items-center font-brandon-medium">
                     <Mail className="w-5 h-5 mr-3 text-slate-400" />
                     <a
                       href="mailto:admin@thephysiocrew.com.au"
@@ -172,7 +172,7 @@ const ContactPage: React.FC = () => {
                 <a
                   href="tel:+61391168691"
                   target="_blank"
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors transform hover:scale-[1.03]"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-blue-600 text-white font-josefin-semibold hover:bg-blue-700 transition-colors transform hover:scale-[1.03]"
                 >
                   <Phone className="w-4 h-4 mr-2" />
                   Call Tullamarine
@@ -181,7 +181,7 @@ const ContactPage: React.FC = () => {
                   href="https://www.google.com/maps?ll=-37.701648,144.881209&z=15&t=m&hl=en&gl=IN&mapclient=embed&q=Unit+1/191+Melrose+Dr+Tullamarine+VIC+3043+Australia"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-slate-100 text-slate-800 font-semibold hover:bg-slate-200 transition-colors"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-slate-100 text-slate-800 font-josefin-semibold hover:bg-slate-200 transition-colors"
                 >
                   Get Directions <ArrowRight className="w-4 h-4 ml-2" />
                 </Link>
@@ -210,11 +210,11 @@ const ContactPage: React.FC = () => {
                   Carlton
                 </h3>
                 <div className="space-y-4 text-slate-600">
-                  <p className="flex items-start">
+                  <p className="flex items-start font-brandon-medium">
                     <MapPin className="w-5 h-5 mr-3 mt-1 text-slate-400 flex-shrink-0" />
                     2/221 Drummond Street, Carlton 3053
                   </p>
-                  <p className="flex items-center">
+                  <p className="flex items-center font-brandon-medium">
                     <Mail className="w-5 h-5 mr-3 text-slate-400" />
                     <a
                       href="mailto:carlton@thephysiocrew.com.au"
@@ -229,7 +229,7 @@ const ContactPage: React.FC = () => {
                 <a
                   href="tel:+61391168693"
                   target="_blank"
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors transform hover:scale-[1.03]"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-josefin-semibold bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors transform hover:scale-[1.03]"
                 >
                   <Phone className="w-4 h-4 mr-2" />
                   Call Carlton
@@ -238,7 +238,7 @@ const ContactPage: React.FC = () => {
                   href="https://www.google.com/maps/place/2%2F221+Drummond+St,+Carlton+VIC+3053,+Australia/@-37.801156,144.968024,15z/data=!4m6!3m5!1s0x6ad642d140a55555:0x83aa7bc56d863b4!8m2!3d-37.8011558!4d144.9680243!16s%2Fg%2F11w1kt6jb9?hl=en&entry=ttu&g_ep=EgoyMDI1MTAwNy4wIKXMDSoASAFQAw%3D%3D"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-slate-100 text-slate-800 font-semibold hover:bg-slate-200 transition-colors"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-josefin-semibold bg-slate-100 text-slate-800 font-semibold hover:bg-slate-200 transition-colors"
                 >
                   Get Directions <ArrowRight className="w-4 h-4 ml-2" />
                 </Link>
@@ -262,10 +262,10 @@ const ContactPage: React.FC = () => {
               id="booking-form"
               variants={itemVariants}
             >
-              <h3 className="text-3xl font-bold text-slate-900 mb-2">
+              <h3 className="text-3xl font-bold text-slate-900 mb-2 font-josefin-semibold">
                 Book Your Appointment
               </h3>
-              <p className="text-slate-500 mb-8">
+              <p className="text-slate-500 mb-8 font-brandon-medium">
                 Fill out the form below and we'll get back to you shortly.
               </p>
               <form className="space-y-6">
@@ -327,7 +327,7 @@ const ContactPage: React.FC = () => {
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 text-white py-4 px-6 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 font-semibold text-lg transition-all transform hover:scale-[1.02] flex items-center justify-center shadow-lg hover:shadow-blue-300/50"
+                  className="w-full bg-blue-600 text-white py-4 px-6 rounded-lg font-josefin-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 font-semibold text-lg transition-all transform hover:scale-[1.02] flex items-center justify-center shadow-lg hover:shadow-blue-300/50"
                 >
                   <Calendar className="w-5 h-5 mr-3" />
                   Book Appointment
@@ -341,12 +341,12 @@ const ContactPage: React.FC = () => {
               variants={itemVariants}
             >
               {/* Opening Hours */}
-              <div className="bg-white p-8 rounded-2xl shadow-2xl shadow-slate-200/50 border border-slate-100 h-full max-h-fit">
+              <div className="bg-white p-8 rounded-2xl shadow-2xl shadow-slate-200/50 border border-slate-100 h-full max-h-fit font-josefin-semibold">
                 <InfoItem icon={Clock} title="Opening Hours">
                   <div className="space-y-1 text-slate-600 mt-2">
-                    <p>Mon - Fri: 7:00 AM - 8:00 PM</p>
-                    <p>Saturday: 8:00 AM - 4:00 PM</p>
-                    <p>Sunday: Closed</p>
+                    <p className="font-brandon-medium">Mon - Fri: 7:00 AM - 8:00 PM</p>
+                    <p className="font-brandon-medium">Saturday: 8:00 AM - 4:00 PM</p>
+                    <p className="font-brandon-medium">Sunday: Closed</p>
                   </div>
                 </InfoItem>
               </div>

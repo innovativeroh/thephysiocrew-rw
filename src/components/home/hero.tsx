@@ -124,17 +124,17 @@ const Hero = () => {
 
         <motion.h1
           variants={itemVariants}
-          className="text-3xl md:text-4xl lg:text-6xl text-white alan-semibold max-w-[900px]"
+          className="text-3xl md:text-4xl lg:text-5xl text-white font-josefin-semibold max-w-[900px]"
         >
           Melbourne’s trusted experts in{" "}
           <span className="text-orange-400">sports injuries,</span>{" "}
-          <span className="text-orange-400">musculoskeletal</span> care,
-          and <span className="text-orange-400">post-operative</span> rehab.
+          <span className="text-orange-400">musculoskeletal</span> care, and{" "}
+          <span className="text-orange-400">post-operative</span> rehab.
         </motion.h1>
 
         <motion.p
           variants={itemVariants}
-          className="text-xl max-w-[650px] text-white mont-medium mt-3"
+          className="text-2xl max-w-[700px] text-white mt-3 font-brandon-medium"
         >
           Our expert team of physiotherapists provide hands-on care and creates
           personalised treatment plans that help achieve your health goals.
@@ -150,7 +150,7 @@ const Hero = () => {
                 "https://the-physio-crew-tullamarine-pty-ltd.au3.cliniko.com/bookings"
               }
               target="_blank"
-              className="flex alan-semibold text-lg flex-wrap mt-5 gap-4 text-blue-950 bg-white py-3 px-6 rounded-2xl"
+              className="flex text-lg flex-wrap mt-5 gap-4 text-blue-950 bg-white py-3 px-6 rounded-2xl font-josefin-semibold"
             >
               Book Now <ArrowRight />
             </Link>
