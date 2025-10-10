@@ -126,8 +126,10 @@ const Hero = () => {
           variants={itemVariants}
           className="text-3xl md:text-4xl lg:text-6xl text-white alan-semibold max-w-[900px]"
         >
-          Melbourne’s trusted experts in sports injuries, musculoskeletal care,
-          and <span className="text-orange-500">post-operative</span> rehab.
+          Melbourne’s trusted experts in{" "}
+          <span className="text-orange-400">sports injuries,</span>{" "}
+          <span className="text-orange-400">musculoskeletal</span> care,
+          and <span className="text-orange-400">post-operative</span> rehab.
         </motion.h1>
 
         <motion.p
