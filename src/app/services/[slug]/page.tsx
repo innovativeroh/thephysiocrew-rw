@@ -148,11 +148,11 @@ export default function ServicePage() {
               className="max-w-4xl text-center md:text-left"
               variants={textVariants}
             >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-josefin-semibold text-white mb-4 leading-tight">
                 {service.title}
               </h1>
               {service.subDescription && (
-                <p className="text-xl md:text-2xl font-light text-blue-100 mb-8 max-w-2xl leading-relaxed">
+                <p className="text-xl md:text-2xl font-brandon text-blue-100 mb-8 max-w-2xl leading-relaxed">
                   {service.subDescription}
                 </p>
               )}
@@ -164,7 +164,7 @@ export default function ServicePage() {
                 className="inline-flex"
               >
                 <motion.button
-                  className="inline-flex items-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-full shadow-xl hover:shadow-blue-500/20 transition-shadow duration-300"
+                  className="inline-flex items-center px-8 py-4 bg-white text-blue-600 font-josefin-semibold rounded-full shadow-xl hover:shadow-blue-500/20 transition-shadow duration-300"
                   variants={hoverVariants}
                   whileHover="hover"
                   whileTap={{ scale: 0.98 }}
@@ -205,10 +205,10 @@ export default function ServicePage() {
             variants={textVariants}
           >
             <div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-blue-900 mb-6 leading-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-josefin-semibold text-blue-900 mb-6 leading-tight">
                 About the Service
               </h2>
-              <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl">
+              <p className="text-lg md:text-xl text-gray-700 font-brandon leading-relaxed max-w-3xl">
                 {service.description}
               </p>
             </div>
@@ -216,7 +216,7 @@ export default function ServicePage() {
 
           {/* Right Column: Key Points */}
           <motion.div className="space-y-6" variants={textVariants}>
-            <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-8 leading-tight">
+            <h2 className="text-3xl md:text-4xl font-josefin-semibold text-blue-900 mb-8 leading-tight">
               Key Benefits
             </h2>
             <div className="space-y-4">
@@ -228,14 +228,14 @@ export default function ServicePage() {
                   whileHover="hover"
                 >
                   <div className="flex items-start space-x-4">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white font-bold shrink-0 text-sm">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white font-josefin-semibold shrink-0 text-sm">
                       {index + 1}
                     </div>
                     <div className="flex-1 pt-1">
-                      <h3 className="text-xl font-semibold text-blue-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">
+                      <h3 className="text-xl font-josefin-semibold text-blue-900 mb-2 group-hover:text-blue-700 transition-colors duration-300">
                         {point.title}
                       </h3>
-                      <p className="text-gray-600 leading-relaxed text-sm">
+                      <p className="text-gray-600 font-brandon-medium leading-relaxed text-base">
                         {point.description}
                       </p>
                     </div>

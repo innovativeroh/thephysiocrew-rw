@@ -140,14 +140,14 @@ const BlogsSection = () => {
         <div className="container mx-auto px-6 py-24 md:py-32 lg:py-40">
           <div className="mx-auto max-w-4xl space-y-8 text-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-sm">
-              <span className="text-sm font-medium tracking-wide">
+              <span className="text-sm font-brandon-medium tracking-wide">
                 NEWS & RESEARCH
               </span>
             </div>
-            <h1 className="text-center text-3xl font-semibold md:text-4xl lg:text-6xl">
+            <h1 className="text-center text-3xl font-josefin-semibold md:text-4xl lg:text-6xl">
               Health, Movement & Recovery
             </h1>
-            <p className="mx-auto max-w-[600px] text-center text-sm font-medium text-gray-200">
+            <p className="mx-auto max-w-[600px] text-center text-lg font-brandon-medium text-gray-200">
               Expert knowledge and genuine care to help you relieve pain,
               restore strength, and achieve your health goals.
             </p>
@@ -175,7 +175,7 @@ const BlogsSection = () => {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-10">
           {/* Conditional rendering based on loading and search results */}
           {loading ? (
-            <p className="col-span-full text-center text-gray-500">
+            <p className="col-span-full text-center text-gray-500 font-josefin-semibold">
               Loading articles...
             </p>
           ) : filteredBlogs.length > 0 ? (
@@ -201,23 +201,23 @@ const BlogsSection = () => {
                   <div className="flex items-center justify-between text-sm">
                     <Badge
                       variant="secondary"
-                      className="bg-blue-500/10 font-medium text-blue-500"
+                      className="bg-blue-500/10 font-brandon-mediums text-blue-500"
                     >
                       {blog.category}
                     </Badge>
-                    <time className="font-medium text-gray-400">
+                    <time className="font-medium text-gray-400 font-brandon-medium">
                       {formatDate(blog.publishedAt)}
                     </time>
                   </div>
-                  <h2 className="text-balance text-xl font-semibold md:text-2xl">
+                  <h2 className="text-balance text-xl font-josefin-semibold md:text-2xl">
                     {blog.title}
                   </h2>
-                  <p className="font-medium text-pretty text-gray-600">{blog.excerpt}</p>
+                  <p className="font-medium text-pretty text-gray-600 font-brandon-medium">{blog.excerpt}</p>
                   <div className="flex items-center justify-between pt-2">
                     <span className="text-sm font-medium text-black">
                       {blog.authorName}
                     </span>
-                    <div className="flex items-center gap-2 text-sm font-semibold text-blue-600">
+                    <div className="flex items-center gap-2 text-sm font-brandon text-blue-600">
                       <span>Read more</span>
                       <ArrowUpIcon className="rotate-45" size={16} />
                     </div>

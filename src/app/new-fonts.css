@@ -1,0 +1,46 @@
+/* ===============================
+   fonts.css
+   Fonts: Brandon Grotesque + Josefin Sans
+   =============================== */
+
+/* --- Import Josefin Sans from Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
+/* --- Brandon Grotesque (Local Fonts) --- */
+@font-face {
+  font-family: "Brandon Grotesque";
+  src: url("/fonts/Brandon Grotesque Medium/Brandon_reg.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Brandon Grotesque";
+  src: url("/fonts/Brandon Grotesque Medium/Brandon_med.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --- Utility Classes --- */
+
+/* Josefin Sans */
+.font-josefin-semibold {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 600;
+}
+
+/* Brandon Grotesque Regular */
+.font-brandon {
+  font-family: "Brandon Grotesque", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Brandon Grotesque Medium */
+.font-brandon-medium {
+  font-family: "Brandon Grotesque", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}

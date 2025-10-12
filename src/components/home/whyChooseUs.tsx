@@ -78,7 +78,7 @@ const WhyChooseUs = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.5 }}
-              className="text-3xl md:text-4xl lg:text-5xl alan-semibold"
+              className="text-3xl md:text-4xl lg:text-5xl font-josefin-semibold"
             >
               Why choose us?
             </motion.h1>
@@ -118,7 +118,7 @@ const WhyChooseUs = () => {
                   <feature.icon className="h-8 w-8" strokeWidth={1.5} />
                 </div>
                 <h3
-                  className={`mb-2 text-xl alan-bold
+                  className={`mb-2 text-xl font-brandon font-brandon-medium
                     ${feature.highlighted ? "text-white" : "text-gray-900"}`}
                 >
                   {feature.title}

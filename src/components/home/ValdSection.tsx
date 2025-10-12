@@ -61,11 +61,11 @@ const ValdSection = () => {
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.6, ease: "easeOut" as const }}
           >
-            <h1 className="text-3xl md:text-4xl lg:text-5xl alan-semibold max-w-[600px] text-center text-white">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-josefin-semibold max-w-[600px] text-center text-white">
               Smarter Recovery with{" "}
               <span className="text-orange-500">VALD Technology</span>
             </h1>
-            <p className="text-sm max-w-[600px] text-gray-300 mont-medium text-center">
+            <p className="text-lg max-w-[700px] text-gray-300 font-brandon-medium text-center">
               At The Physio Crew, we go beyond traditional physiotherapy by using
               VALD performance technology—a world-leading system trusted by
               elite sports teams and medical professionals.

@@ -90,13 +90,13 @@ const BrandsSection = () => {
           >
             <motion.h1
               variants={headerItemVariants}
-              className="text-3xl md:text-4xl lg:text-5xl alan-semibold text-center"
+              className="text-3xl md:text-4xl lg:text-5xl font-josefin-semibold text-center"
             >
               Local Community Partners
             </motion.h1>
             <motion.p
               variants={headerItemVariants}
-              className="text-sm max-w-[600px] text-gray-900 mont-medium text-center"
+              className="text-lg max-w-[600px] text-gray-900 font-brandon-medium text-center"
             >
               We are deeply committed to the health of the communities we serve.
               We build strong relationships with local sports teams.

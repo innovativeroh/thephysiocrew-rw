@@ -57,7 +57,7 @@ const TeamsSections = () => {
   return (
     <section>
       <main>
-        <div className="px-5 pt-32 pb-10 w-full flex-center flex-col gap-16">
+        <div className="px-5 pt-32 pb-10 w-full flex-center flex-col gap-10">
           <div className="w-full flex flex-col md:flex-row items-start justify-between gap-3 container mx-auto">
             {/* --- ANIMATION ADDED --- */}
             <motion.h1
@@ -65,7 +65,7 @@ const TeamsSections = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="text-3xl md:text-4xl lg:text-5xl text-left alan-semibold"
+              className="text-3xl md:text-4xl lg:text-5xl text-left font-josefin-semibold"
             >
               Meet the Crew
             </motion.h1>
@@ -75,7 +75,7 @@ const TeamsSections = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="text-sm max-w-[500px] text-gray-900 mont-medium"
+              className="text-lg max-w-[600px] text-gray-900 font-brandon-medium"
             >
               Our crew is more than clinicians — we’re movement advocates,
               problem solvers, and your recovery allies. Together, we blend

@@ -35,14 +35,14 @@ const BlogPostPageComponent = ({
           <article>
             <header className="mb-8">
               {post.category && (
-                <span className="mb-2 inline-block rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-800">
+                <span className="mb-2 inline-block rounded-full bg-blue-100 px-3 py-1 text-sm font-brandon-medium text-blue-800">
                   {post.category}
                 </span>
               )}
-              <h1 className="mb-4 text-3xl font-semibold tracking-tight text-gray-900 md:text-4xl lg:text-5xl">
+              <h1 className="mb-4 text-3xl font-josefin-semibold tracking-tight text-gray-900 md:text-4xl lg:text-5xl">
                 {post.title}
               </h1>
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-medium text-gray-600">
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-base font-brandon-medium text-gray-600">
                 {post.authorName && (
                   <div className="flex items-center gap-2">
                     <User className="h-4 w-4" />
@@ -71,7 +71,7 @@ const BlogPostPageComponent = ({
               </figure>
             )}
 
-            <div className="prose prose-lg max-w-none text-gray-700">
+            <div className="prose prose-lg max-w-none text-gray-700 font-brandon">
               {/* Render Sanity Rich Text Content Here */}
               <PortableText value={post.content} />
             </div>

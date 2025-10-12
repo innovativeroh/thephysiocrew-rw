@@ -61,7 +61,7 @@ const ValdSection = () => {
           >
             <motion.h1
               variants={textItemVariants}
-              className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl alan-semibold"
+              className="text-4xl tracking-tight text-gray-900 sm:text-5xl md:text-6xl font-josefin-semibold"
             >
               Free Gym Access to <span className="text-blue-600">Empower</span>{" "}
               Your Recovery
@@ -69,7 +69,7 @@ const ValdSection = () => {
 
             <motion.p
               variants={textItemVariants}
-              className="mt-6 max-w-2xl text-lg leading-8 text-slate-700 mont-medium"
+              className="mt-6 max-w-2xl text-lg leading-8 text-slate-700 font-brandon-medium"
             >
               True healing happens beyond the treatment room. That's why we
               offer complimentary access to our state-of-the-art rehabilitation
@@ -84,19 +84,19 @@ const ValdSection = () => {
             >
               <li className="flex items-center gap-3">
                 <Dumbbell className="h-6 w-6 flex-shrink-0 text-blue-500" />
-                <span className="alan-medium">
+                <span className="font-brandon">
                   Rebuild strength after an injury.
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <Zap className="h-6 w-6 flex-shrink-0 text-blue-500" />
-                <span className="alan-medium">
+                <span className="font-brandon">
                   Fine-tune your athletic performance.
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <HeartPulse className="h-6 w-6 flex-shrink-0 text-blue-500" />
-                <span className="alan-medium">
+                <span className="font-brandon">
                   Stay active, healthy, and pain-free.
                 </span>
               </li>
@@ -106,7 +106,7 @@ const ValdSection = () => {
               <Link
                 href="https://the-physio-crew-tullamarine-pty-ltd.au3.cliniko.com/bookings"
                 target="_blank"
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-8 py-4 text-lg font-bold text-white shadow-lg transition-transform duration-300 hover:scale-105 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-8 py-4 text-lg font-josefin-semibold text-white shadow-lg transition-transform duration-300 hover:scale-105 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
               >
                 Book Your Session
                 <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />

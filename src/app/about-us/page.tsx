@@ -119,13 +119,13 @@ const AboutUsSection = () => {
           variants={staggerContainer}
         >
           <motion.div
-            className="w-full flex flex-col lg:flex-row gap-5 items-center lg:items-end justify-between"
+            className="w-full flex flex-col lg:flex-row gap-5 items-center lg:items-start justify-between"
             variants={fadeIn}
           >
-            <h1 className="text-3xl md:text-4xl lg:text-5xl alan-semibold max-w-[700px] text-center lg:text-left">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-josefin-semibold max-w-[700px] text-center lg:text-left">
               Discover Our Journey and What Drives Us
             </h1>
-            <p className="text-sm lg:text-lg max-w-[600px] text-gray-700 text-center lg:text-left mont-medium">
+            <p className="text-sm lg:text-lg max-w-[600px] text-gray-700 text-center lg:text-left font-brandon-medium">
               Founded in 2017, The Physio Crew is the heart of a lifelong dream
               to serve our community with genuine care, expert knowledge, and a
               deep commitment to patient wellbeing.
@@ -159,10 +159,10 @@ const AboutUsSection = () => {
               variants={fadeIn}
             >
               <div className="lg:w-0 lg:flex-1">
-                <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl max-w-[800px]">
+                <h2 className="text-4xl font-josefin-semibold tracking-tight text-gray-900 sm:text-5xl max-w-[800px]">
                   Empowering you to achieve your health goals with confidence.
                 </h2>
-                <p className="mt-6 max-w-3xl text-lg leading-8 text-gray-600">
+                <p className="mt-6 max-w-3xl text-lg leading-8 text-gray-600 font-brandon-medium">
                   Our success is measured by the lives we help improve. Every
                   patient who walks through our doors is treated with respect,
                   empathy, and a personalised approach to their health and
@@ -181,7 +181,7 @@ const AboutUsSection = () => {
                       />
                     ))}
                   </div>
-                  <p className="text-sm leading-6 text-gray-900">
+                  <p className="text-sm leading-6 text-gray-900 font-josefin-semibold">
                     <span className="font-semibold">5/5</span> Patient Rating
                   </p>
                 </div>
@@ -201,11 +201,11 @@ const AboutUsSection = () => {
                       <div className=" text-blue-600 p-3 rounded-full flex-shrink-0">
                         <Target className="w-8 h-8" strokeWidth={2} />
                       </div>
-                      <h3 className="text-3xl lg:text-4xl font-bold tracking-tight text-gray-900">
+                      <h3 className="text-3xl lg:text-4xl font-josefin-semibold tracking-tight text-gray-900">
                         Our Purpose
                       </h3>
                     </div>
-                    <p className="text-lg leading-8 text-gray-700">
+                    <p className="text-lg leading-8 text-gray-700 font-brandon-medium">
                       To display best practice by providing a bespoke care plan
                       addressing patient goals through continued commitment to
                       professional development.
@@ -214,7 +214,7 @@ const AboutUsSection = () => {
 
                   {/* Our Core Values Grid */}
                   <div className="space-y-6">
-                    <h3 className="text-3xl lg:text-4xl font-bold tracking-tight text-gray-900">
+                    <h3 className="text-3xl lg:text-4xl font-bold tracking-tight text-gray-900 font-josefin-semibold">
                       Our Core Values
                     </h3>
                     <motion.ul
@@ -234,11 +234,11 @@ const AboutUsSection = () => {
                             <div className="bg-blue-100 text-blue-600 p-2.5 rounded-full flex-shrink-0">
                               <value.icon className="w-6 h-6" strokeWidth={2} />
                             </div>
-                            <h4 className="text-xl font-semibold text-gray-900">
+                            <h4 className="font-josefin-semibold text-gray-900">
                               {value.name}
                             </h4>
                           </div>
-                          <p className="mt-3 text-base text-gray-600">
+                          <p className="mt-3 text-base font-brandon-medium text-gray-600">
                             {value.description}
                           </p>
                         </motion.li>
@@ -260,10 +260,10 @@ const AboutUsSection = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
-                    <dt className="text-5xl font-bold leading-10 tracking-tight text-gray-900">
+                    <dt className="text-5xl font-josefin-semibold leading-10 tracking-tight text-gray-900">
                       {stat.value}
                     </dt>
-                    <dd className="mt-4 text-base leading-7 text-gray-500">
+                    <dd className="mt-4 font-brandon-medium leading-7 text-lg text-gray-500">
                       {stat.label}
                     </dd>
                   </motion.div>
