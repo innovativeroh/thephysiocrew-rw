@@ -36,10 +36,10 @@ const FormInput = ({ icon: Icon, ...props }: any) => (
 const InfoItem = ({ icon: Icon, title, children }: any) => (
   <div className="flex items-start space-x-4 group">
     <div className="flex-shrink-0 mt-1">
-      <Icon className="h-6 w-6 text-blue-600 group-hover:scale-110 transition-transform duration-300" />
+      <Icon className="h-6 w-6 text-white group-hover:scale-110 transition-transform duration-300" />
     </div>
     <div>
-      <h5 className="font-semibold text-slate-800 mb-1">{title}</h5>
+      <h5 className="font-semibold text-white mb-1">{title}</h5>
       <div className="text-slate-600">{children}</div>
     </div>
   </div>
@@ -341,9 +341,9 @@ const ContactPage: React.FC = () => {
               variants={itemVariants}
             >
               {/* Opening Hours */}
-              <div className="bg-white p-8 rounded-2xl shadow-2xl shadow-slate-200/50 border border-slate-100 h-full max-h-fit font-josefin-semibold">
+              <div className="HeroBackground p-8 rounded-2xl shadow-2xl h-full max-h-fit font-josefin-semibold">
                 <InfoItem icon={Clock} title="Opening Hours">
-                  <div className="space-y-1 text-slate-600 mt-2">
+                  <div className="space-y-1 text-white mt-2">
                     <p className="font-brandon-medium">Mon - Fri: 7:00 AM - 8:00 PM</p>
                     <p className="font-brandon-medium">Saturday: 8:00 AM - 4:00 PM</p>
                     <p className="font-brandon-medium">Sunday: Closed</p>

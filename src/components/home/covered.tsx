@@ -106,12 +106,12 @@ const CoveredSection = () => {
   };
 
   return (
-    <section className="pt-20 pb-20">
-      <main className="container mx-auto">
-        <div className="px-5 pt-10 w-full flex flex-col items-center gap-16">
+    <section >
+      <main className="">
+        <div className="pt-10 w-full flex flex-col items-center gap-16">
           {/* Animated Header */}
           <motion.div
-            className="w-full flex flex-col items-center gap-5 max-w-4xl"
+            className="w-full flex flex-col items-start gap-5 max-w-4xl"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -119,13 +119,13 @@ const CoveredSection = () => {
           >
             <motion.h1
               variants={itemVariants}
-              className="text-3xl md:text-4xl lg:text-5xl alan-semibold text-gray-900 text-center leading-tight"
+              className="text-3xl md:text-4xl lg:text-5xl font-josefin-semibold text-blue-900 text-start leading-tight"
             >
               What We Treat
             </motion.h1>
             <motion.p
               variants={itemVariants}
-              className="text-base md:text-lg text-gray-600 mont-medium text-center leading-relaxed"
+              className="text-base md:text-lg text-gray-600 mont-medium max-w-3xl text-start leading-relaxed"
             >
               We treat back & neck pain, sports/work injuries, sciatica,
               whiplash, post-op rehab, osteoarthritis, tendon issues,
@@ -136,7 +136,7 @@ const CoveredSection = () => {
 
           {/* Animated Grid of Cards */}
           <motion.div
-            className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+            className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -153,10 +153,10 @@ const CoveredSection = () => {
                 >
                   <treatment.icon size={24} className={treatment.iconColor} />
                 </div>
-                <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mt-5 mb-3 leading-tight">
+                <h2 className="text-xl md:text-xl font-semibold text-gray-900 mt-5 mb-3 leading-tight">
                   {treatment.title}
                 </h2>
-                <p className="text-base text-gray-600 font-medium leading-relaxed flex-1">
+                <p className="text-sm text-gray-600 font-medium leading-relaxed flex-1">
                   {treatment.description}
                 </p>
               </motion.div>
