@@ -45,7 +45,7 @@ const Footer: FC = () => {
   };
 
   return (
-    <footer className="text-gray-700">
+    <footer className="text-gray-700 border-t-[1px] border-black/10">
       <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
         <motion.div

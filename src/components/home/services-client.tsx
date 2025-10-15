@@ -78,13 +78,14 @@ const ServicesClient: React.FC<ServicesClientProps> = ({ services }) => {
         >
           <div className="w-full flex flex-col md:flex-row items-start justify-between gap-4">
             <motion.h1
-              className="text-3xl md:text-4xl lg:text-5xl text-black font-josefin-semibold max-w-[500px]"
+              className="text-3xl md:text-3xl lg:text-4xl text-black font-josefin-semibold max-w-[700px]"
               variants={textVariants}
             >
-              Quality Service You Can Get
+              Sport and Spinal Rehab Expert care. Personalised Treatment. Proven
+              Results.
             </motion.h1>
             <motion.p
-              className="text-2xl max-w-[500px] text-gray-900 font-brandon-medium"
+              className="text-xl max-w-[500px] text-gray-900 font-brandon-medium"
               variants={textVariants}
             >
               We provide a wide range of health services. Covering all of your

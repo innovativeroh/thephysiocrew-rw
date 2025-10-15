@@ -78,7 +78,8 @@ const Header = () => {
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   // Hide header on Sanity Studio pages
-  const hiddenPaths = [/^\/studio(\/.*)?$/];
+  const hiddenPaths = [/^\/Studio(\/.*)?$/];
+
   if (hiddenPaths.some((pattern) => pattern.test(pathname))) {
     return null;
   }

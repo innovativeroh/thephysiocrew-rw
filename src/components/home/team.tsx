@@ -6,28 +6,39 @@ import { groq } from "next-sanity";
 import Error from "next/error";
 import { client } from "../../../sanity/lib/client";
 
-export interface Team {
+export interface BookingLink {
+  location: "tullamarine" | "carlton";
+  bookingUrl: string;
+}
+
+export interface TeamMember {
   _id: string;
-  imageUrl: string;
   name: string;
+  image: string; // resolved URL from Sanity
   role?: string;
   education: string;
   description: string;
+  bookingLinks?: BookingLink[];
 }
 
 const TeamsSections = () => {
-  const [teamMember, setTeamMember] = useState<Team[]>([])
+  const [teamMember, setTeamMember] = useState<TeamMember[]>([])
   const [error, setError] = useState<any | null>(null)
   const [loading, setLoading] = useState(true)
 
-  const teamQuery = groq`*[_type == "team"] {
-    _id,
-    name,
-    "imageUrl": image.asset->url,
-    role,
-    education,
-    description
-  }`;
+  const teamQuery = `*[_type == "team"]{
+        _id,
+        name,
+        "image": image.asset->url,
+        role,
+        education,
+        description,
+        bookingLinks[]{
+          location,
+          bookingUrl
+        }
+      } | order(name asc)`
+
   useEffect(() => {
     const fetchTeams = async () => {
       try {
@@ -35,9 +46,8 @@ const TeamsSections = () => {
         setError(null)
         setTeamMember([])
         const response = await client.fetch(teamQuery, undefined, {
-              cache: 'force-cache',
+              cache: 'no-cache',
               next: { 
-                revalidate: 3600, // Cache for 1 hour
                 tags: ['team']    // Tag for manual revalidation
               },
             });

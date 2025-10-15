@@ -103,7 +103,7 @@ const WhyChooseUs = () => {
                   ${
                     feature.highlighted
                       ? "HeroBackground text-white md:translate-y-20"
-                      : "bg-white text-gray-900"
+                      : "bg-[#EE9423]"
                   }`}
                 style={{ minHeight: "180px" }}
               >
@@ -112,14 +112,14 @@ const WhyChooseUs = () => {
                     ${
                       feature.highlighted
                         ? "bg-white text-orange-500"
-                        : "bg-gray-100 text-orange-500"
+                        : "bg-white text-orange-500"
                     }`}
                 >
                   <feature.icon className="h-8 w-8" strokeWidth={1.5} />
                 </div>
                 <h3
                   className={`mb-2 text-xl font-brandon font-brandon-medium
-                    ${feature.highlighted ? "text-white" : "text-gray-900"}`}
+                    ${feature.highlighted ? "text-white" : "text-white"}`}
                 >
                   {feature.title}
                 </h3>
