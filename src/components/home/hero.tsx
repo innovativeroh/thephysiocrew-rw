@@ -47,7 +47,7 @@ const Hero = () => {
 
   return (
     <div className="h-[850px] relative w-full flex items-center justify-start overflow-hidden">
-      <div className="w-full h-full absolute top-0 left-0 HeroBackground z-[-2]"></div>
+      <div className="w-full h-full absolute top-0 left-0 bg-[#003B64] z-[-2]"></div>
       <div className="hidden lg:block absolute top-0 right-0 w-[750px] h-[850px] z-[-2]">
         {images.map((image, index) => (
           <img
@@ -72,8 +72,8 @@ const Hero = () => {
           variants={itemVariants}
           className="text-3xl md:text-4xl lg:text-5xl text-white font-josefin-semibold max-w-[900px]"
         >
-          <span className="text-orange-400">The Physio crew - All about you</span>  Melbourne’s trusted experts in sports injuries,
-          musculoskeletal care, and post-operative rehab.
+          Melbourne’s trusted physio team for sports injuries, pain relief, and
+          recovery. Personalised care to help you move better and feel stronger.
         </motion.h1>
 
         <motion.p
@@ -94,7 +94,7 @@ const Hero = () => {
                 "https://the-physio-crew-tullamarine-pty-ltd.au3.cliniko.com/bookings"
               }
               target="_blank"
-              className="flex text-lg flex-wrap mt-5 gap-4 text-blue-950 bg-white py-3 px-6 rounded-2xl font-josefin-semibold"
+              className="flex text-lg flex-wrap mt-5 gap-4 text-blue-950 bg-white hover:bg-[#EE9423] hover:text-white duration-300 py-3 px-6 rounded-2xl font-josefin-semibold"
             >
               Book Now <ArrowRight />
             </Link>

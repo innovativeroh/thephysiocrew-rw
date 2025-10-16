@@ -69,8 +69,8 @@ const AboutUsSection = () => {
         <div className="w-full lg:w-1/2 flex flex-col justify-center p-8 md:p-16 lg:p-24 xl:p-32">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-josefin-semibold leading-tight text-gray-800 max-w-[700px]">
             Our Story the Journey That&apos;s Shaped{" "}
-            <span className="text-[#3B82F6]">Patient</span> <br />
-            <span className="text-[#3B82F6]">Success</span>
+            <span className="text-[#003B64]">Patient</span> <br />
+            <span className="text-[#003B64]">Success</span>
           </h1>
 
           <div className="mt-8 text-base md:text-lg font-brandon-medium text-gray-600 max-w-2xl space-y-4 mont-medium">
@@ -95,7 +95,7 @@ const AboutUsSection = () => {
 
           <Link
             href="https://the-physio-crew-tullamarine-pty-ltd.au3.cliniko.com/bookings"
-            className="mt-12 px-8 py-4 bg-[#3B82F6] text-white font-brandon-medium rounded-lg shadow-lg hover:bg-blue-700 transition duration-300 self-start"
+            className="mt-12 px-8 py-4 bg-[#003B64] text-white font-brandon-medium rounded-lg shadow-lg hover:bg-[#3D6A89] transition duration-300 self-start"
           >
             Book an Appointment
           </Link>
@@ -155,7 +155,7 @@ const AboutUsSection = () => {
               </p>
               <div className="flex mt-4 space-x-1">
                 {[...Array(5)].map((_, i) => (
-                  <span key={i} className="text-green-500 text-xl md:text-2xl">
+                  <span key={i} className="text-[#3D6A89] text-xl md:text-2xl">
                     ★
                   </span>
                 ))}

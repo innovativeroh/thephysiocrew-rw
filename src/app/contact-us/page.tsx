@@ -27,7 +27,7 @@ const FormInput = ({ icon: Icon, ...props }: any) => (
     </div>
     <input
       {...props}
-      className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-colors placeholder:text-slate-500"
+      className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#003B64]/50 focus:border-[#003B64] transition-colors placeholder:text-slate-500"
     />
   </div>
 );
@@ -61,13 +61,9 @@ const ContactPage: React.FC = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-slate-50">
+      <div className="min-h-screen">
         {/* Hero Section */}
-        <div className="relative bg-gradient-to-b from-white to-slate-50 pt-28 md:pt-40 pb-20 overflow-hidden">
-          <div
-            className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"
-            style={{ backgroundRepeat: "repeat" }}
-          ></div>
+        <div className="relative pt-28 md:pt-40 pb-20 overflow-hidden">
           <div className="container mx-auto px-4 relative">
             <motion.div
               className="text-center"
@@ -78,7 +74,7 @@ const ContactPage: React.FC = () => {
               <h1 className="text-4xl md:text-6xl font-josefin-semibold text-slate-900 mb-4 tracking-tight">
                 Get in Touch
               </h1>
-              <h2 className="text-xl md:text-2xl font-brandon text-blue-600 mb-6 font-brandon-medium">
+              <h2 className="text-xl md:text-2xl font-brandon text-[#003B64] mb-6 font-brandon-medium">
                 Your Path to Recovery Starts Here
               </h2>
               <p className="text-slate-600 text-lg max-w-3xl mx-auto mb-10 font-brandon-medium">
@@ -89,14 +85,14 @@ const ContactPage: React.FC = () => {
               <div className="flex flex-col sm:flex-row justify-center gap-4">
                 <a
                   href="#locations"
-                  className="inline-flex items-center justify-center px-8 py-3 font-josefin-semibold rounded-full bg-blue-600 text-white font-semibold hover:bg-blue-700 shadow-lg hover:shadow-blue-300/50 transition-all transform hover:-translate-y-1"
+                  className="font-brandon-medium flex items-center gap-2 whietspace-nowrap rounded-full bg-[#003B64] py-3 px-5 text-xl text-white transition hover:bg-[#3D6A89] sm:px-6 sm:text-sm"
                 >
                   <MapPin className="w-5 h-5 mr-2" />
                   View Our Clinics
                 </a>
                 <Link
                   href="#booking-form"
-                  className="inline-flex items-center justify-center px-8 py-3 font-josefin-semibold rounded-full border-2 border-slate-300 bg-white text-slate-700 font-semibold hover:bg-slate-100 hover:border-slate-400 transition-all transform hover:-translate-y-1"
+                  className="inline-flex items-center justify-center px-8 py-3 font-josefin-semibold rounded-full border-2 border-slate-300 bg-white text-slate-700 hover:bg-slate-100 hover:border-slate-400 transition-all transform hover:-translate-y-1"
                 >
                   <Calendar className="w-5 h-5 mr-2" />
                   Book Appointment
@@ -172,7 +168,7 @@ const ContactPage: React.FC = () => {
                 <a
                   href="tel:+61391168691"
                   target="_blank"
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-blue-600 text-white font-josefin-semibold hover:bg-blue-700 transition-colors transform hover:scale-[1.03]"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-[#003B64] text-white font-josefin-semibold hover:bg-[#3D6A89] transition-colors transform hover:scale-[1.03]"
                 >
                   <Phone className="w-4 h-4 mr-2" />
                   Call Tullamarine
@@ -229,7 +225,7 @@ const ContactPage: React.FC = () => {
                 <a
                   href="tel:+61391168693"
                   target="_blank"
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-josefin-semibold bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors transform hover:scale-[1.03]"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-josefin-semibold bg-[#003B64] text-white font-semibold hover:bg-[#3D6A89] transition-colors transform hover:scale-[1.03]"
                 >
                   <Phone className="w-4 h-4 mr-2" />
                   Call Carlton
@@ -262,7 +258,7 @@ const ContactPage: React.FC = () => {
               id="booking-form"
               variants={itemVariants}
             >
-              <h3 className="text-3xl font-bold text-slate-900 mb-2 font-josefin-semibold">
+              <h3 className="text-3xl text-slate-900 mb-2 font-josefin-semibold">
                 Book Your Appointment
               </h3>
               <p className="text-slate-500 mb-8 font-brandon-medium">
@@ -327,7 +323,7 @@ const ContactPage: React.FC = () => {
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 text-white py-4 px-6 rounded-lg font-josefin-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 font-semibold text-lg transition-all transform hover:scale-[1.02] flex items-center justify-center shadow-lg hover:shadow-blue-300/50"
+                  className="w-full bg-[#003B64] text-white py-4 px-6 rounded-lg font-josefin-semibold hover:bg-[#3D6A89] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 font-semibold text-lg transition-all transform hover:scale-[1.02] flex items-center justify-center shadow-lg hover:shadow-blue-300/50"
                 >
                   <Calendar className="w-5 h-5 mr-3" />
                   Book Appointment
@@ -341,11 +337,15 @@ const ContactPage: React.FC = () => {
               variants={itemVariants}
             >
               {/* Opening Hours */}
-              <div className="HeroBackground p-8 rounded-2xl shadow-2xl h-full max-h-fit font-josefin-semibold">
+              <div className="bg-[#003B64] p-8 rounded-2xl shadow-2xl h-full max-h-fit font-josefin-semibold">
                 <InfoItem icon={Clock} title="Opening Hours">
                   <div className="space-y-1 text-white mt-2">
-                    <p className="font-brandon-medium">Mon - Fri: 7:00 AM - 8:00 PM</p>
-                    <p className="font-brandon-medium">Saturday: 8:00 AM - 4:00 PM</p>
+                    <p className="font-brandon-medium">
+                      Mon - Fri: 7:00 AM - 8:00 PM
+                    </p>
+                    <p className="font-brandon-medium">
+                      Saturday: 8:00 AM - 4:00 PM
+                    </p>
                     <p className="font-brandon-medium">Sunday: Closed</p>
                   </div>
                 </InfoItem>

@@ -29,13 +29,13 @@ const BlogPostPageComponent = ({
   return (
     <>
     <div className="pt-20 font-sans">
-      <main className="max-w-5xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+      <main className="max-w-6xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
         {/* Main Content */}
         <div className="lg:col-span-2">
           <article>
             <header className="mb-8">
               {post.category && (
-                <span className="mb-2 inline-block rounded-full bg-blue-100 px-3 py-1 text-sm font-brandon-medium text-blue-800">
+            <span className="mb-5 inline-block rounded-full bg-[#003B64]/10 px-5 py-1 sora text-base font-brandon-medium text-[#003B64]">
                   {post.category}
                 </span>
               )}
@@ -71,44 +71,11 @@ const BlogPostPageComponent = ({
               </figure>
             )}
 
-            <div className="prose prose-lg max-w-none text-gray-700 font-brandon">
+            <div className="prose prose-xl text-lg text-gray-700 font-brandon">
               {/* Render Sanity Rich Text Content Here */}
               <PortableText value={post.content} />
             </div>
 
-            <footer className="mt-12 border-t pt-8">
-              <div className="flex items-center justify-between">
-                <h3 className="text-lg font-semibold text-gray-800">
-                  Share this article
-                </h3>
-                <div className="flex items-center gap-2">
-                  <a
-                    href="#"
-                    className="rounded-full p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-blue-600"
-                  >
-                    <Twitter className="h-5 w-5" />
-                  </a>
-                  <a
-                    href="#"
-                    className="rounded-full p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-blue-800"
-                  >
-                    <Facebook className="h-5 w-5" />
-                  </a>
-                  <a
-                    href="#"
-                    className="rounded-full p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-blue-700"
-                  >
-                    <Linkedin className="h-5 w-5" />
-                  </a>
-                  <a
-                    href="#"
-                    className="rounded-full p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-red-600"
-                  >
-                    <Mail className="h-5 w-5" />
-                  </a>
-                </div>
-              </div>
-            </footer>
           </article>
         </div>
       </main>

@@ -102,7 +102,7 @@ const Header = () => {
         </div>
 
         {/* Center - Desktop Navigation */}
-        <div className="hidden flex-1 justify-center md:flex">
+        <div className="hidden flex-1 justify-center md:flex text-[#003B64]">
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
@@ -178,17 +178,17 @@ const Header = () => {
         {/* Right Side - Socials, CTA, Mobile Toggle */}
         <div className="flex flex-shrink-0 items-center gap-2 sm:gap-4">
           <div className="hidden items-center gap-2 sm:flex sm:gap-3">
-            <Link href="#" aria-label="Facebook Page">
-              <Facebook className="h-5 w-5 text-blue-950 hover:text-blue-700 transition" />
+            <Link href="https://www.facebook.com/thephysiocrewofficial" aria-label="Facebook Page">
+            <Facebook className="h-5 w-5 text-[#003B64] hover:text-[#3D6A89] transition" />
             </Link>
-            <Link href="#" aria-label="Instagram Page">
-              <Instagram className="h-5 w-5 text-blue-950 hover:text-blue-700 transition" />
+            <Link href="https://www.instagram.com/thephysiocrewofficial/" aria-label="Instagram Page">
+              <Instagram className="h-5 w-5 text-[#003B64] hover:text-[#3D6A89] transition" />
             </Link>
           </div>
           <Link
             href="https://the-physio-crew-tullamarine-pty-ltd.au3.cliniko.com/bookings"
             target="_blank"
-            className="font-brandon-medium flex items-center gap-2 whitespace-nowrap rounded-full bg-blue-950 py-3 px-5 text-xs text-white transition hover:bg-blue-900 sm:px-6 sm:text-sm"
+            className="font-brandon-medium flex items-center gap-2 whietspace-nowrap rounded-full bg-[#003B64] py-3 px-5 text-xl text-white transition hover:bg-[#3D6A89] sm:px-6 sm:text-sm"
           >
             Book Now <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4" />
           </Link>
@@ -263,18 +263,18 @@ const Header = () => {
             {/* Social Links for Mobile */}
             <div className="mt-4 flex items-center justify-center gap-6 border-t pt-4">
               <Link
-                href="#"
+                href="https://www.facebook.com/thephysiocrewofficial"
                 aria-label="Facebook Page"
                 onClick={closeMobileMenu}
               >
-                <Facebook className="h-6 w-6 text-blue-950" />
+                <Facebook className="h-6 w-6 text-[#003B64] hover:text-[#3D6A89]" />
               </Link>
               <Link
-                href="#"
+                href="https://www.instagram.com/thephysiocrewofficial/"
                 aria-label="Instagram Page"
                 onClick={closeMobileMenu}
               >
-                <Instagram className="h-6 w-6 text-blue-950" />
+                <Instagram className="h-6 w-6 text-[#003B64] hover:text-[#3D6A89]" />
               </Link>
             </div>
           </div>

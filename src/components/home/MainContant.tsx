@@ -80,7 +80,7 @@ const MainContant = () => {
           </div>
           <div className="flex-[1] w-full flex flex-col gap-5 items-start justify-start">
             <div className="flex items-center gap-4">
-              <div className="text-blue-600 rounded-full">
+              <div className="text-[#3D6A89] rounded-full">
                 <Target className="w-8 h-8" strokeWidth={2} />
               </div>
               <h3 className="text-3xl sm:text-4xl font-josefin-semibold text-gray-900">
@@ -99,10 +99,10 @@ const MainContant = () => {
               {coreValues.map((value) => (
                 <h1
                   key={value.name}
-                  className="p-6 HeroBackground rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+                  className="p-6 bg-[#003B64] rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="bg-white text-orange-500 p-2.5 rounded-full">
+                    <div className="bg-white text-[#003B64] p-2.5 rounded-full">
                       <value.icon className="w-6 h-6" strokeWidth={2} />
                     </div>
                     <h4 className="text-xl font-josefin-semibold text-white">
@@ -122,9 +122,9 @@ const MainContant = () => {
             {statsData.map((stat, index) => (
               <div
                 key={index}
-                className="px-5 h-full text-start border-r-2 border-blue-600"
+                className="px-5 h-full text-start border-r-2 border-[#003B64]"
               >
-                <dt className="text-4xl sm:text-5xl font-josefin-semibold text-blue-600">
+              <dt className="text-4xl sm:text-5xl font-josefin-semibold text-[#003B64]">
                   {stat.value}
                 </dt>
                 <dd className="mt-4 text-base font-brandon-medium text-gray-600 max-w-[200px]">
