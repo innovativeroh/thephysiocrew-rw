@@ -131,7 +131,7 @@ const Modal = ({
         {/* Details */}
         <div className="text-center md:text-left flex flex-col justify-between h-full gap-2">
           {member.role && (
-            <p className="uppercase text-xs font-medium text-sky-700 mb-1 tracking-widest">
+            <p className="uppercase text-xs font-medium text-[#003B64] mb-1 tracking-widest">
               {member.role}
             </p>
           )}
@@ -147,7 +147,7 @@ const Modal = ({
               {member.bookingLinks.map((link) => (
                 <span
                   key={link.location}
-                  className={`bg-sky-100 text-sky-800 px-3 py-1 rounded-full text-xs font-semibold`}
+                className={`bg-sky-100 text-[#3D6A89] px-3 py-1 rounded-full text-xs font-semibold`}
                 >
                   {link.location === "tullamarine" ? "Tullamarine" : "Carlton"}
                 </span>
@@ -169,7 +169,7 @@ const Modal = ({
                   href={link.bookingUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-5 py-2.5 bg-blue-500 text-white rounded-full text-sm font-medium flex items-center gap-2 shadow-md hover:scale-105 active:scale-100 transition-transform duration-150"
+                  className="px-5 py-2.5 bg-[#003B64] text-white rounded-full text-sm font-medium flex items-center gap-2 shadow-md hover:scale-105 active:scale-100 transition-transform duration-150"
                 >
                   {/* Example: add Lucide MapPin icon for location */}
                   <svg

@@ -40,7 +40,7 @@ const CtaSection = () => {
         <div className="px-5 pt-32 pb-20 w-full flex-center">
           {/* Main animated container */}
           <motion.div
-            className="px-5 py-5 min-h-[70vh] w-full flex-center flex-col HeroBackground rounded-2xl gap-3 text-center"
+            className="px-5 py-5 min-h-[70vh] w-full flex-center flex-col bg-[#003B64] rounded-2xl gap-3 text-center"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -71,9 +71,11 @@ const CtaSection = () => {
                 transition={{ duration: 0.2 }}
               >
                 <Link
-                  href={"https://the-physio-crew-tullamarine-pty-ltd.au3.cliniko.com/bookings"}
-                target="_blank"
-                  className="inline-flex items-center font-josefin-semibold text-lg mt-5 gap-4 text-blue-950 bg-white py-3 px-6 rounded-2xl"
+                  href={
+                    "https://the-physio-crew-tullamarine-pty-ltd.au3.cliniko.com/bookings"
+                  }
+                  target="_blank"
+                  className="flex text-lg flex-wrap mt-5 gap-4 text-blue-950 bg-white hover:bg-[#EE9423] hover:text-white duration-300 py-3 px-6 rounded-2xl font-josefin-semibold"
                 >
                   Book Now <ArrowRight />
                 </Link>

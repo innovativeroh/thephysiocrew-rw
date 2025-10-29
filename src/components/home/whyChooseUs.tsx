@@ -102,8 +102,8 @@ const WhyChooseUs = () => {
                 className={`flex w-full max-w-[400px] flex-col items-start justify-start rounded-xl p-6 shadow-md transition-colors duration-300 ease-in-out sm:p-8
                   ${
                     feature.highlighted
-                      ? "HeroBackground text-white md:translate-y-20"
-                      : "bg-[#EE9423]"
+                      ? "bg-[#003B64] md:translate-y-20"
+                      : "bg-[#003B64] text-[#003B64]"
                   }`}
                 style={{ minHeight: "180px" }}
               >
@@ -111,15 +111,15 @@ const WhyChooseUs = () => {
                   className={`mb-4 flex h-15 w-15 items-center justify-center rounded-full
                     ${
                       feature.highlighted
-                        ? "bg-white text-orange-500"
-                        : "bg-white text-orange-500"
+                        ? "bg-white text-[#003B64]"
+                        : "bg-white text-[#003B64]"
                     }`}
                 >
                   <feature.icon className="h-8 w-8" strokeWidth={1.5} />
                 </div>
                 <h3
                   className={`mb-2 text-xl font-brandon font-brandon-medium
-                    ${feature.highlighted ? "text-white" : "text-white"}`}
+                    ${feature.highlighted ? "text-[#FFFCF8]" : "text-[#FFFCF8]"}`}
                 >
                   {feature.title}
                 </h3>
