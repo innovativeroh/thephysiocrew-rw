@@ -18,7 +18,7 @@ const page = () => {
       <ServicesSection />
       <MoreThanSection />
       <ValdSection />
-      {/* <AboutUsSectionPushed /> */}
+      {/* <AboutUsSectionPushedd /> */}
       {/* <TestimonialsSectionPushed /> */}
       <ReelsSection />
       <BrandsSection />
