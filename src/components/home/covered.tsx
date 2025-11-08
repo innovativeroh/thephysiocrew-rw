@@ -106,9 +106,9 @@ const CoveredSection = () => {
   };
 
   return (
-    <section >
-      <main className="">
-        <div className="pt-10 w-full flex flex-col items-center gap-16">
+    <section className="w-full">
+      <main className="w-full">
+        <div className="pt-10 w-full flex flex-col items-start gap-16">
           {/* Animated Header */}
           <motion.div
             className="w-full flex flex-col items-start gap-5 max-w-4xl"

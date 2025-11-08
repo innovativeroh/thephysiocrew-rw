@@ -7,10 +7,61 @@ import {
   Target,
 } from "lucide-react";
 import Image from "next/image";
-import lines from "../../../public/Images/lines.png";
-import React from "react";
+import placeholder from "../../../public/Images/4.jpg";
+import React, { useEffect, useState } from "react";
+import { groq } from "next-sanity";
+import { client } from "../../../sanity/lib/client";
+
+interface aboutVideo {
+  _id: string;
+  videoUrl: string;
+  overlayOpacity: number;
+}
 
 const MainContant = () => {
+  const [backgroundVideo, setBackgroundVideo] = useState<aboutVideo | null>(
+    null
+  );
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, seterror] = useState<any | null>(null);
+
+  const aboutVideoQuery = groq`
+      *[_type == "aboutVideo"][0]{
+        _id,
+        title,
+        overlayOpacity,
+        "videoUrl": videoFile.asset->url
+      }
+    `;
+
+  useEffect(() => {
+    const fetchWork = async () => {
+      try {
+        setLoading(true);
+        seterror(null);
+        setBackgroundVideo(null);
+        const res = await client.fetch(aboutVideoQuery);
+        setBackgroundVideo(res);
+        setLoading(false);
+        seterror(null);
+      } catch (err) {
+        seterror(err);
+        setLoading(false);
+      }
+    };
+    fetchWork();
+  }, []);
+
+  console.log(backgroundVideo);
+
+  if (loading) {
+    return (
+      <div className="h-screen w-full flex-center text-3xl md:text-4xl lg:text-5xl font-satoshi font-medium">
+        Loading...
+      </div>
+    );
+  }
+
   const statsData = [
     {
       value: "100%",
@@ -56,27 +107,27 @@ const MainContant = () => {
     },
   ];
   return (
-    <section className="pt-32 relative">
-      <Image
-        src={lines}
-        alt=""
-        width={1920}
-        height={1080}
-        className="absolute top-0 left-0 w-full opacity-10 z-[-1]"
-      />
+    <section className="pt-20 relative">
       <main className="container mx-auto">
+        <div className="pb-16 w-full h-auto flex-center">
+          <video
+            src={backgroundVideo?.videoUrl}
+            autoPlay
+            muted
+            loop
+            controls
+            className="w-full h-auot rounded-2xl"
+          />
+        </div>
         <div className="px-5 w-full flex flex-col lg:flex-row gap-10 items-start justify-center">
-          <div className="flex-[1] w-full flex flex-col items-start justify-center gap-3">
-            <h2 className="text-4xl sm:text-5xl font-josefin-semibold tracking-tight text-gray-900 leading-tight">
-              Empowering Your Health Journey with Confidence
-            </h2>
-            <p className="text-lg leading-8 text-gray-600 font-brandon-medium max-w-2xl">
-              Our success is measured by the lives we help improve. Every
-              patient who walks through our doors is treated with respect,
-              empathy, and a personalised approach to their health and
-              wellbeing. Our passion is people, and our greatest reward is
-              seeing you achieve the health and quality of life you deserve
-            </p>
+          <div className="flex-[1] w-full h-full flex flex-col items-start justify-center gap-3">
+            <Image
+              src={placeholder}
+              alt=""
+              height={1080}
+              width={1080}
+              className="w-full h-full object-cover rounded-3xl"
+            />
           </div>
           <div className="flex-[1] w-full flex flex-col gap-5 items-start justify-start">
             <div className="flex items-center gap-4">
@@ -117,14 +168,14 @@ const MainContant = () => {
             </ul>
           </div>
         </div>
-        <div className="w-full mt-16 sm:mt-24 max-w-[1380px] mx-auto">
+        <div className="w-full mt-16 sm:mt-24 mx-auto">
           <dl className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 place-content-between place-items-between">
             {statsData.map((stat, index) => (
               <div
                 key={index}
                 className="px-5 h-full text-start border-r-2 border-[#003B64]"
               >
-              <dt className="text-4xl sm:text-5xl font-josefin-semibold text-[#003B64]">
+                <dt className="text-4xl sm:text-5xl font-josefin-semibold text-[#003B64]">
                   {stat.value}
                 </dt>
                 <dd className="mt-4 text-base font-brandon-medium text-gray-600 max-w-[200px]">

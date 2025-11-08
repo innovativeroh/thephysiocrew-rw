@@ -122,12 +122,14 @@ const Header = () => {
                   Services
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[700px]">
                     {services.map((service) => (
                       <ListItem
                         key={service._id}
                         title={service.title}
                         href={`/services/${service.slug}`}
+                        imageUrl={service.imageUrl}
+                        imageAlt={service.alt}
                       >
                         {service.description.substring(0, 80)}...
                       </ListItem>
@@ -178,10 +180,16 @@ const Header = () => {
         {/* Right Side - Socials, CTA, Mobile Toggle */}
         <div className="flex flex-shrink-0 items-center gap-2 sm:gap-4">
           <div className="hidden items-center gap-2 sm:flex sm:gap-3">
-            <Link href="https://www.facebook.com/thephysiocrewofficial" aria-label="Facebook Page">
-            <Facebook className="h-5 w-5 text-[#003B64] hover:text-[#3D6A89] transition" />
+            <Link
+              href="https://www.facebook.com/thephysiocrewofficial"
+              aria-label="Facebook Page"
+            >
+              <Facebook className="h-5 w-5 text-[#003B64] hover:text-[#3D6A89] transition" />
             </Link>
-            <Link href="https://www.instagram.com/thephysiocrewofficial/" aria-label="Instagram Page">
+            <Link
+              href="https://www.instagram.com/thephysiocrewofficial/"
+              aria-label="Instagram Page"
+            >
               <Instagram className="h-5 w-5 text-[#003B64] hover:text-[#3D6A89] transition" />
             </Link>
           </div>
@@ -285,32 +293,52 @@ const Header = () => {
 };
 
 // Custom ListItem component for the NavigationMenu (updated with fonts)
-const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
-          )}
-          {...props}
-        >
-          <div className="font-josefin-semibold text-sm leading-none text-blue-950">
-            {title}
-          </div>
-          <p className="font-brandon line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </a>
-      </NavigationMenuLink>
-    </li>
-  );
-});
+interface ListItemProps extends React.ComponentPropsWithoutRef<"a"> {
+  title: string;
+  imageUrl?: string;
+  imageAlt?: string;
+}
+
+const ListItem = React.forwardRef<React.ElementRef<"a">, ListItemProps>(
+  ({ className, title, children, imageUrl, imageAlt, ...props }, ref) => {
+    return (
+      <li>
+        <NavigationMenuLink asChild>
+          <a
+            ref={ref}
+            className={cn(
+              "block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+              className
+            )}
+            {...props}
+          >
+            <div className="flex items-start gap-3">
+              {imageUrl && (
+                <div className="flex-shrink-0">
+                  <Image
+                    src={imageUrl}
+                    alt={imageAlt || title}
+                    width={1920}
+                    height={1080}
+                    className="h-[100px] w-auto ounded-md object-cover rounded-sm"
+                  />
+                </div>
+              )}
+              <div className="flex-1">
+                <div className="font-josefin-semibold text-sm leading-none text-blue-950 mb-1">
+                  {title}
+                </div>
+                <p className="font-brandon line-clamp-2 text-sm leading-snug text-muted-foreground">
+                  {children}
+                </p>
+              </div>
+            </div>
+          </a>
+        </NavigationMenuLink>
+      </li>
+    );
+  }
+);
 ListItem.displayName = "ListItem";
 
 export default Header;

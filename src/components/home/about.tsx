@@ -9,12 +9,8 @@ import { client } from "../../../sanity/lib/client";
 interface TeamMediaResponse {
   result: {
     _id: string;
-    mediaType: "image" | "video";
-    image?: {
-      _id: string;
-      url: string;
-    };
-    video?: {
+    mediaType: "image";
+    image: {
       _id: string;
       url: string;
     };
@@ -41,10 +37,6 @@ const AboutUsSection = () => {
             "image": image.asset->{
               _id,
               url
-            },
-            "video": video.asset->{
-              _id,
-              url
             }
           }
         `;
@@ -63,10 +55,10 @@ const AboutUsSection = () => {
 
 
   return (
-    <section className="relative bg-white pt-16">
+    <section className="container mx-auto relative bg-white pt-16">
       <div className="relative z-10 flex flex-col-reverse lg:flex-row min-h-screen">
         {/* Left Half - Text Content */}
-        <div className="w-full lg:w-1/2 flex flex-col justify-center p-8 md:p-16 lg:p-24 xl:p-32">
+        <div className="w-full lg:w-1/2 flex flex-col justify-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-josefin-semibold leading-tight text-gray-800 max-w-[700px]">
             Our Story the Journey That&apos;s Shaped{" "}
             <span className="text-[#003B64]">Patient</span> <br />
@@ -102,8 +94,8 @@ const AboutUsSection = () => {
         </div>
 
         {/* Right Half - Image/Video and Reviews */}
-        <div className="w-full lg:w-1/2 flex items-center justify-center lg:justify-start py-12 lg:py-0">
-          <div className="relative w-[90%] md:w-[80%] lg:w-[90%] xl:w-[80%] aspect-[5/4] lg:aspect-auto h-[450px] md:h-[550px] lg:h-[70%] xl:h-[80%] rounded-[2rem] overflow-hidden">
+        <div className="w-full lg:w-1/2 flex items-center justify-center lg:justify-end">
+          <div className="relative w-full h-full max-h-[750px] rounded-3xl overflow-hidden">
             {/* --- START: CONDITIONAL RENDERING LOGIC --- */}
             {loading ? (
               <div className="flex items-center justify-center w-full h-full bg-gray-200 rounded-[2rem]">
@@ -113,25 +105,14 @@ const AboutUsSection = () => {
               <div className="flex items-center justify-center w-full h-full bg-red-100 rounded-[2rem]">
                 <p className="text-red-600">{error}</p>
               </div>
-            ) : teamMedia?.result?.mediaType === 'image' && teamMedia.result.image?.url ? (
+            ) : teamMedia?.result?.image?.url ? (
               <Image
                 src={teamMedia.result.image.url}
                 alt="The Physio Crew team"
-                layout="fill"
-                objectFit="cover"
-                className="rounded-[2rem]"
+                width={1920}
+                height={1080}
+                className="h-full w-full object-cover rounded-[2rem]"
               />
-            ) : teamMedia?.result?.mediaType === 'video' && teamMedia.result.video?.url ? (
-              <video
-                src={teamMedia.result.video.url}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover rounded-[2rem]"
-              >
-                Your browser does not support the video tag.
-              </video>
             ) : (
               <div className="flex items-center justify-center w-full h-full bg-gray-200 rounded-[2rem]">
                 <p className="text-gray-600">No media available</p>

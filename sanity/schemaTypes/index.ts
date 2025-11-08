@@ -3,7 +3,9 @@ import { blog } from "./blog";
 import { team } from "./team";
 import service from "./service";
 import { teamImage } from "./teamImage";
+import { heroVideo } from "./heroVideo";
+import { aboutVideo } from "./aboutVideo";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [blog, team, service, teamImage],
+  types: [heroVideo, aboutVideo, blog, team, service, teamImage],
 };

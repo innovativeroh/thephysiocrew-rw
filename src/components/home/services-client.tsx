@@ -70,7 +70,7 @@ const ServicesClient: React.FC<ServicesClientProps> = ({ services }) => {
     <section id="services">
       <main className="container mx-auto">
         <motion.div
-          className="px-5 pt-32 md:pt-48 w-full flex-center flex-col gap-16"
+          className="px-5 pt-10 md:pt-32 w-full flex-center flex-col gap-16"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"

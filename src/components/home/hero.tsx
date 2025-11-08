@@ -1,107 +1,110 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import { AnimatedTooltip } from "../ui/animated-tooltip";
-import Link from "next/link";
+"use client"
 import { ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { groq } from "next-sanity";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import { client } from "../../../sanity/lib/client";
+import Image from "next/image";
+
+interface HeroVideo {
+  _id: string;
+  videoUrl: string
+  overlayOpacity: number;
+}
 
 const Hero = () => {
-  const images = [
-    "/Images/1.jpg",
-    "/Images/2.jpg",
-    "/Images/3.jpg",
-    "/Images/4.jpg",
-  ];
+  const [backgroundVideo, setBackgroundVideo] = useState<HeroVideo | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, seterror] = useState<any | null>(null);
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+    const heroVideoQuery = groq`
+      *[_type == "heroVideo"][0]{
+        _id,
+        title,
+        overlayOpacity,
+        "videoUrl": videoFile.asset->url
+      }
+    `;
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, 4000); // Change every 4s
+    useEffect(() => {
+    const fetchWork = async () => {
+      try {
+        setLoading(true);
+        seterror(null);
+        setBackgroundVideo(null);
+        const res = await client.fetch(heroVideoQuery);
+        setBackgroundVideo(res);
+        setLoading(false);
+        seterror(null);
+      } catch (err) {
+        seterror(err);
+        setLoading(false);
+      }
+    };
+    fetchWork();
+  }, []);
 
-    return () => clearInterval(interval);
-  }, [images.length]);
+  console.log(backgroundVideo)
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
+  
+  if (loading) {
+    return (
+      <div className="h-screen w-full flex-center text-3xl md:text-4xl lg:text-5xl font-satoshi font-medium">
+        Loading...
+      </div>
+    );
+  }
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut" as const,
-      },
-    },
-  };
+
 
   return (
-    <div className="h-[850px] relative w-full flex items-center justify-start overflow-hidden">
-      <div className="w-full h-full absolute top-0 left-0 bg-[#003B64] z-[-2]"></div>
-      <div className="hidden lg:block absolute top-0 right-0 w-[750px] h-[850px] z-[-2]">
-        {images.map((image, index) => (
-          <img
-            key={index}
-            src={image}
-            alt={`Slide ${index}`}
-            className="absolute inset-0 w-full h-full rounded-bl-[500px] object-cover transition-opacity duration-1000 ease-in-out"
-            style={{
-              opacity: index === currentIndex ? 1 : 0,
-            }}
-          />
-        ))}
+    <section className="w-full relative">
+      <div className="p-4 w-full h-full flex-center absolute top-0 left-0 z-[-2]">
+        <video
+          src={backgroundVideo?.videoUrl}
+          autoPlay
+          muted
+          loop
+          className="w-full h-full object-cover rounded-3xl"
+        />
       </div>
-
-      <motion.div
-        className="container mx-auto px-5"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <motion.h1
-          variants={itemVariants}
-          className="text-3xl md:text-4xl lg:text-5xl text-white font-josefin-semibold max-w-[900px]"
-        >
-          Melbourne’s trusted physio team for sports injuries, pain relief, and
-          recovery. Personalised care to help you move better and feel stronger.
-        </motion.h1>
-
-        <motion.p
-          variants={itemVariants}
-          className="text-2xl max-w-[700px] text-white mt-3 font-brandon-medium"
-        >
-          Our expert team of physiotherapists provide hands-on care and creates
-          personalised treatment plans that help achieve your health goals.
-        </motion.p>
-
-        <motion.div variants={itemVariants} className="inline-block mt-5">
-          <motion.div
-            whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-            whileTap={{ scale: 0.95 }}
+      <div className="p-4 w-full h-full flex-center absolute top-0 left-0 z-[-1]">
+      <div className="w-full h-full bg-black/40 rounded-3xl" />
+      </div>
+      <main className="container mx-auto">
+        <div className="px-5 py-5 min-h-screen w-full flex-center flex-col">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl text-white text-center font-josefin-semibold max-w-[800px]">
+            Melbourne’s trusted physio team for sports injuries, pain relief,
+            and recovery.
+          </h1>
+          <p className="text-2xl max-w-[700px] text-white mt-3 text-center font-brandon">
+            Our expert team of physiotherapists provide hands-on care and
+            creates personalised treatment plans that help achieve your health
+            goals.
+          </p>
+          <div className="flex-center gap-5">
+          <Link
+            href={
+              "https://the-physio-crew-tullamarine-pty-ltd.au3.cliniko.com/bookings"
+            }
+            target="_blank"
+            className="w-44 flex-center text-lg mt-5 gap-4 text-blue-950 bg-white hover:bg-white/20 hover:text-white duration-300 py-3 px-5 rounded-full font-josefin-semibold border-2 border-white"
           >
-            <Link
-              href={
-                "https://the-physio-crew-tullamarine-pty-ltd.au3.cliniko.com/bookings"
-              }
-              target="_blank"
-              className="flex text-lg flex-wrap mt-5 gap-4 text-blue-950 bg-white hover:bg-[#EE9423] hover:text-white duration-300 py-3 px-6 rounded-2xl font-josefin-semibold"
-            >
-              Book Now <ArrowRight />
-            </Link>
-          </motion.div>
-        </motion.div>
-      </motion.div>
-    </div>
+            Book Now <ArrowRight />
+          </Link>
+          <Link
+            href={
+              "https://the-physio-crew-tullamarine-pty-ltd.au3.cliniko.com/bookings"
+            }
+            target="_blank"
+            className="w-44 flex-center text-lg mt-5 gap-4 text-white hover:bg-white/20 duration-300 py-3 px-5 rounded-full font-josefin-semibold border-2 border-white"
+          >
+            Know more
+          </Link>
+          </div>
+        </div>
+      </main>
+    </section>
   );
 };
 
