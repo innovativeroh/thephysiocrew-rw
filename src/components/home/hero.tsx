@@ -73,11 +73,11 @@ const Hero = () => {
       </div>
       <main className="container mx-auto">
         <div className="px-5 py-5 min-h-screen w-full flex-center flex-col">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl text-white text-center font-josefin-semibold max-w-[800px]">
+          <h1 className="text-3xl md:text-5xl text-white text-center font-josefin-semibold max-w-[1000px]">
             Melbourne’s trusted physio team for sports injuries, pain relief,
             and recovery.
           </h1>
-          <p className="text-2xl max-w-[700px] text-white mt-3 text-center font-brandon">
+          <p className="text-xl max-w-[700px] text-white mt-3 text-center font-brandon">
             Our expert team of physiotherapists provide hands-on care and
             creates personalised treatment plans that help achieve your health
             goals.
