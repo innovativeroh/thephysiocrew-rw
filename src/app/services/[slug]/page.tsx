@@ -8,13 +8,6 @@ import Link from "next/link";
 import Footer from "@/components/core/footer";
 import CoveredSection from "@/components/home/covered";
 import Image from "next/image";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -68,14 +61,14 @@ export interface Service {
   description: string;
   heroImage?: string;
   heroImageAlt?: string;
-  serviceVideo?: string; // ✅ Added
+  serviceVideo?: string;
 
   keyPoints?: Array<{
     title: string;
     description: string;
     image?: string;
     imageAlt?: string;
-    video?: string; // ✅ Added
+    video?: string;
   }>;
 
   color: string;
@@ -88,6 +81,9 @@ const ServicePage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const showCoveredSection = slug === "musculoskeletal-physiotherapy";
+
+  // State for selected key point (default: first item)
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
   useEffect(() => {
     if (!slug) {
@@ -121,6 +117,7 @@ const ServicePage = () => {
           setError("Service not found");
         } else {
           setService(data);
+          setSelectedIndex(0); // Reset to first item
         }
         setLoading(false);
       })
@@ -149,8 +146,11 @@ const ServicePage = () => {
     );
   }
 
+  const selectedPoint = service.keyPoints?.[selectedIndex];
+
   return (
     <section>
+      {/* HERO SECTION */}
       <motion.div
         className="relative overflow-hidden"
         variants={cardVariants}
@@ -169,14 +169,16 @@ const ServicePage = () => {
               loop
               className="w-full h-full object-cover absolute top-0 left-0 z-[-1]"
             />
-          ) : service.heroImage && (
-            <Image
-              src={service.heroImage}
-              alt={service.heroImageAlt || service.title}
-              width={1920}
-              height={1080}
-              className="w-full h-full object-cover absolute top-0 left-0 z-[-1]"
-            />
+          ) : (
+            service.heroImage && (
+              <Image
+                src={service.heroImage}
+                alt={service.heroImageAlt || service.title}
+                width={1920}
+                height={1080}
+                className="w-full h-full object-cover absolute top-0 left-0 z-[-1]"
+              />
+            )
           )}
           <div className="absolute inset-0 bg-black/40" />
           <div className="relative z-10 flex h-full flex-col justify-end px-4 sm:px-6 md:px-8 lg:px-12 xl:px-24 py-8 sm:py-12 md:py-16 lg:py-20">
@@ -193,9 +195,7 @@ const ServicePage = () => {
                 </p>
               )}
               <Link
-                href={
-                  "https://the-physio-crew-tullamarine-pty-ltd.au3.cliniko.com/bookings"
-                }
+                href="https://the-physio-crew-tullamarine-pty-ltd.au3.cliniko.com/bookings"
                 target="_blank"
                 className="inline-flex justify-center sm:justify-start"
               >
@@ -226,6 +226,7 @@ const ServicePage = () => {
         </div>
       </motion.div>
 
+      {/* MAIN CONTENT */}
       <motion.div
         className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-24 py-8 sm:py-12 md:py-16 lg:py-20"
         variants={containerVariants}
@@ -234,9 +235,9 @@ const ServicePage = () => {
         viewport={{ once: true, amount: 0.2 }}
       >
         <div className="w-full flex flex-col gap-6 sm:gap-8 md:gap-12 lg:gap-16 items-start justify-center">
-          {/* Left Column: Description */}
+          {/* ABOUT THE SERVICE */}
           <motion.div
-            className="lg:col-span-2 space-y-6 sm:space-y-8"
+            className="w-full space-y-6 sm:space-y-8"
             variants={textVariants}
           >
             <div>
@@ -259,48 +260,95 @@ const ServicePage = () => {
             )}
           </motion.div>
 
-          {/* Right Column: Key Points */}
-          <motion.div
-            className="space-y-4 sm:space-y-6"
-            variants={textVariants}
-          >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-josefin-semibold text-[#003B64] mb-6 sm:mb-8 leading-tight">
+          {/* KEY BENEFITS: TITLES + DESCRIPTION + MEDIA */}
+          <motion.div className="w-full" variants={textVariants}>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-josefin-semibold text-[#003B64] mb-8 sm:mb-12 leading-tight">
               Key Benefits
             </h2>
-            <div className="w-full flex-center">
-              <Carousel className="w-full">
-                <CarouselContent>
-                  {(service.keyPoints || []).map((point, index) => (
-                    <CarouselItem key={index} className="w-full basis-1/4">
-                      <div className="h-[450px] w-[330px] flex-center relative rounded-2xl overflow-hidden">
-                        {point.image && (
-                          <Image
-                            src={point.image}
-                            alt=""
-                            width={1920}
-                            height={1080}
-                            className="w-full h-full object-cover"
-                          />
-                        )}
-                        <div className="py-5 px-5 w-full h-full flex flex-col gap-1 absolute top-0 left-0 bg-black/25 items-start justify-end">
-                          <h1 className="text-white text-xl font-josefin-semibold">
-                            {point.title}
-                          </h1>
-                          <p className="text-white text-base font-brandon">
-                            {point.description}
-                          </p>
-                        </div>
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
-              </Carousel>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16">
+              {/* LEFT: List of titles + description under active */}
+              <div className="space-y-8">
+                {service.keyPoints?.map((point, i) => {
+                  const isActive = selectedIndex === i;
+
+                  return (
+                    <motion.div
+                      key={i}
+                      className="space-y-3"
+                      initial={{ opacity: 0.7 }}
+                      animate={{ opacity: isActive ? 1 : 0.7 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {/* Title + Separator */}
+                      <button
+                        onClick={() => setSelectedIndex(i)}
+                        className="w-full text-left group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#003B64] focus-visible:ring-offset-2 rounded-md"
+                      >
+                        <h3 className="text-xl sm:text-2xl font-brandon-medium text-[#003B64] leading-tight pb-2">
+                          {point.title}
+                        </h3>
+                        <div className="h-px bg-gray-300 w-full" />
+                      </button>
+
+                      {/* Description (only for active) */}
+                      {isActive && (
+                        <motion.p
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          transition={{ duration: 0.3, ease: "easeInOut" }}
+                          className="mt-3 text-base sm:text-lg text-gray-600 font-brandon leading-relaxed max-w-xl"
+                        >
+                          {point.description}
+                        </motion.p>
+                      )}
+                    </motion.div>
+                  );
+                })}
+              </div>
+
+              {/* RIGHT: Selected Media */}
+              <motion.div
+                className="relative aspect-video lg:aspect-auto lg:h-full min-h-80 lg:min-h-96 rounded-xl overflow-hidden shadow-lg bg-gray-100"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4 }}
+                key={selectedIndex}
+              >
+                {selectedPoint ? (
+                  <>
+                    {selectedPoint.video ? (
+                      <video
+                        src={selectedPoint.video}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
+                    ) : (
+                      selectedPoint.image && (
+                        <Image
+                          src={selectedPoint.image}
+                          alt={selectedPoint.imageAlt || selectedPoint.title}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 1024px) 100vw, 50vw"
+                        />
+                      )
+                    )}
+                  </>
+                ) : (
+                  <div className="flex items-center justify-center h-full text-gray-400">
+                    <p>Select a feature</p>
+                  </div>
+                )}
+              </motion.div>
             </div>
           </motion.div>
         </div>
       </motion.div>
+      <Footer />
     </section>
   );
 };
